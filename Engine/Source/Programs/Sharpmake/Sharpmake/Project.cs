@@ -104,8 +104,8 @@ namespace Sharpmake
         public Strings PreFilterSourceFiles { get { return _preFilterSourceFiles; } }
 
 
-        public Strings SourceFilesExtensions = new Strings(".cpp", ".c", ".cc", ".h", ".inl", ".hpp", ".hh", ".asm", ".nasm");// All files under SourceRootPath are evaluated, if match found, it will be added to SourceFiles
-        public Strings SourceFilesCompileExtensions = new Strings(".cpp", ".cc", ".c", ".asm", ".nasm");         // File that match this regex compile
+        public Strings SourceFilesExtensions = new Strings(".cpp", ".c", ".cc", ".h", ".inl", ".hpp", ".hh", ".asm");// All files under SourceRootPath are evaluated, if match found, it will be added to SourceFiles
+        public Strings SourceFilesCompileExtensions = new Strings(".cpp", ".cc", ".c", ".asm");         // File that match this regex compile
         public Strings SourceFilesCPPExtensions = new Strings(".cpp", ".cc");
 
         public Strings SourceFilesFilters = null;                                        // if !=  null, include only file in this filter
@@ -229,11 +229,6 @@ namespace Sharpmake
         public Strings CustomPropsFiles = new Strings();  // vs2010+ .props files
         public Strings CustomTargetsFiles = new Strings();  // vs2010+ .targets files
 
-        public string NasmPropsFile = "";
-        public string NasmTargetsFile = "";
-        public string NasmExePath = "";
-        public Strings NasmPreIncludedFiles = new Strings();
-
         public Strings LibraryPathsExcludeFromWarningRegex = new Strings();                 // Library paths where we want to ignore the path doesn't exist warning
         public Strings IncludePathsExcludeFromWarningRegex = new Strings();                 // Include paths where we want to ignore the path doesn't exist warning
 
@@ -245,7 +240,6 @@ namespace Sharpmake
         public Dictionary<string, string> CustomFilterMapping = new Dictionary<string, string>();  /// maps relative source directory to a custom filter path for vcxproj.filter files
 
         public bool ContainsASM = false;
-        public bool ContainsNASM = false;
 
         // Some projects don't support changelist filter. and will generate build errors when trying to compile the resulting projects.
         public bool SkipProjectWhenFiltersActive = false;
@@ -374,29 +368,11 @@ namespace Sharpmake
             }
         }
 
-        [Obsolete("DeployProject is obsolete, use DeployProjectType instead (DeployType.OnlyIfBuild for the case where DeployProject == true)", false)]
+        private bool _deployProject = false;
         public bool DeployProject
         {
-            get { return DeployProjectType != DeployType.NoDeploy; }
-            set { SetProperty(ref _deployProjectType, value ? DeployType.OnlyIfBuild : DeployType.NoDeploy); }
-        }
-
-        public enum DeployType
-        {
-            // The project would not be deployed.
-            NoDeploy,
-            // The project will be deployed only if it explicitly marked for build in visual studio
-            // (which is true for exe, but could be turned off automatically if FastBuildAll project is generated). 
-            OnlyIfBuild,
-            // The project will be always deployed.
-            AlwaysDeploy
-        }
-
-        private DeployType _deployProjectType = DeployType.NoDeploy;
-        public DeployType DeployProjectType
-        {
-            get { return _deployProjectType; }
-            set { SetProperty(ref _deployProjectType, value); }
+            get { return _deployProject; }
+            set { SetProperty(ref _deployProject, value); }
         }
 
         public static int BlobCleaned { get; private set; }
@@ -529,7 +505,8 @@ namespace Sharpmake
             }
         }
 
-        private protected static void AddMatchExtensionFiles(UniqueList<string> sourceFiles, Strings filesListToUpdate, Strings extensions)
+        // ref added just to ease reading code, files is modified
+        internal static void AddMatchExtensionFiles(UniqueList<string> sourceFiles, ref Strings files, Strings extensions)
         {
             foreach (string file in sourceFiles.Values)
             {
@@ -538,14 +515,15 @@ namespace Sharpmake
                 {
                     if (file.EndsWith(matchExtension, StringComparison.OrdinalIgnoreCase))
                     {
-                        filesListToUpdate.Add(file);
+                        files.Add(file);
                         break;
                     }
                 }
             }
         }
 
-        private protected static bool AddMatchFiles(string rootPath, List<string> sourceFilesRelative, Strings sourceFilesAbsolute, Strings filesListToUpdate, IEnumerable<CachedRegex> regexList)
+        // ref added just to ease reading code, files is modified
+        internal static bool AddMatchFiles(string rootPath, List<string> sourceFilesRelative, Strings sourceFilesAbsolute, ref Strings files, IEnumerable<CachedRegex> regexList)
         {
             bool breakMatch = false;
             var sourceFilesAbsoluteUnsorted = sourceFilesAbsolute.Values;
@@ -563,14 +541,15 @@ namespace Sharpmake
 
                         // Remove .. occurrences from middle of the absolute path.
                         string simplifiedPath = Util.SimplifyPath(sourceFilesAbsoluteUnsorted[i]);
-                        filesListToUpdate.Add(simplifiedPath); // TODO: remove from sourceFilesRelative if match
+                        files.Add(simplifiedPath); // TODO: remove from sourceFilesRelative if match
                     }
                 }
             }
             return breakMatch;
         }
 
-        private protected static bool AddNoMatchFiles(string rootPath, List<string> sourceFilesRelative, Strings sourceFilesAbsolute, Strings filesListToUpdate, IEnumerable<CachedRegex> regexList)
+        // ref added just to ease reading code, files is modified
+        internal static bool AddNoMatchFiles(string rootPath, List<string> sourceFilesRelative, Strings sourceFilesAbsolute, ref Strings files, IEnumerable<CachedRegex> regexList)
         {
             bool breakMatch = false;
             var sourceFilesAbsoluteUnsorted = sourceFilesAbsolute.Values;
@@ -592,7 +571,7 @@ namespace Sharpmake
                 {
                     if (DebugBreaks.ShouldBreakOnSourcePath(DebugBreaks.Context.AddMatchFiles, sourceFilesAbsoluteUnsorted[i]))
                         breakMatch = true;
-                    filesListToUpdate.Add(sourceFilesAbsoluteUnsorted[i]);
+                    files.Add(sourceFilesAbsoluteUnsorted[i]);
                 }
             }
             return breakMatch;
@@ -798,7 +777,7 @@ namespace Sharpmake
 
         private class RegexResolver
         {
-            private static readonly ThreadLocal<System.Security.Cryptography.MD5> s_md5Hasher = new ThreadLocal<System.Security.Cryptography.MD5>(() => System.Security.Cryptography.MD5.Create());
+            private static ThreadLocal<System.Security.Cryptography.MD5> s_md5Hasher = new ThreadLocal<System.Security.Cryptography.MD5>(() => System.Security.Cryptography.MD5.Create());
             public RegexResolver()
             {
                 ConfRegexesHashToAnyConf = new Dictionary<string, Configuration>();
@@ -901,11 +880,11 @@ namespace Sharpmake
                 DirectoryInfo sourceRootPathInfo = new DirectoryInfo(capitalizedSourceRootPath);
                 Strings files = new Strings(GetDirectoryFiles(sourceRootPathInfo));
 
-                AddMatchExtensionFiles(files, SourceFiles, SourceFilesExtensions);
+                AddMatchExtensionFiles(files, ref SourceFiles, SourceFilesExtensions);
 
                 if (SourceFilesIncludeRegex.Count != 0)
                 {
-                    if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, files), files, SourceFiles, sourceFilesIncludeRegex))
+                    if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, files), files, ref SourceFiles, sourceFilesIncludeRegex))
                         Debugger.Break();
                 }
 
@@ -915,20 +894,20 @@ namespace Sharpmake
                     string capitalizedAdditionalSourceRootPath = Util.GetCapitalizedPath(additionalSourceRootPath);
                     DirectoryInfo additionalSourceRootPathInfo = new DirectoryInfo(capitalizedAdditionalSourceRootPath);
                     Strings additionalFiles = new Strings(GetDirectoryFiles(additionalSourceRootPathInfo));
-                    AddMatchExtensionFiles(additionalFiles, SourceFiles, SourceFilesExtensions);
+                    AddMatchExtensionFiles(additionalFiles, ref SourceFiles, SourceFilesExtensions);
 
                     if (SourceFilesIncludeRegex.Count != 0)
                     {
-                        if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, additionalFiles), additionalFiles, SourceFiles, sourceFilesIncludeRegex))
+                        if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, additionalFiles), additionalFiles, ref SourceFiles, sourceFilesIncludeRegex))
                             Debugger.Break();
                     }
 
-                    AddMatchExtensionFiles(additionalFiles, PRIFiles, PRIFilesExtensions);
-                    AddMatchExtensionFiles(additionalFiles, ResourceFiles, ResourceFilesExtensions);
-                    AddMatchExtensionFiles(additionalFiles, NatvisFiles, NatvisFilesExtensions);
-                    AddMatchExtensionFiles(additionalFiles, NoneFiles, NoneExtensions);
-                    AddMatchExtensionFiles(additionalFiles, NoneFilesCopyIfNewer, NoneExtensionsCopyIfNewer);
-                    AddMatchExtensionFiles(additionalFiles, ProtoFiles, ProtoExtensions);
+                    AddMatchExtensionFiles(additionalFiles, ref PRIFiles, PRIFilesExtensions);
+                    AddMatchExtensionFiles(additionalFiles, ref ResourceFiles, ResourceFilesExtensions);
+                    AddMatchExtensionFiles(additionalFiles, ref NatvisFiles, NatvisFilesExtensions);
+                    AddMatchExtensionFiles(additionalFiles, ref NoneFiles, NoneExtensions);
+                    AddMatchExtensionFiles(additionalFiles, ref NoneFilesCopyIfNewer, NoneExtensionsCopyIfNewer);
+                    AddMatchExtensionFiles(additionalFiles, ref ProtoFiles, ProtoExtensions);
                 }
 
                 // Apply Filters 
@@ -937,7 +916,7 @@ namespace Sharpmake
                     Strings allSourceFile = SourceFiles;
                     SourceFiles = new Strings();
 
-                    if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, allSourceFile), allSourceFile, SourceFiles, sourceFilesFiltersRegex))
+                    if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, allSourceFile), allSourceFile, ref SourceFiles, sourceFilesFiltersRegex))
                         Debugger.Break();
                 }
 
@@ -945,25 +924,25 @@ namespace Sharpmake
 
                 if (SourceFilesBuildFiltersRegex.Count != 0)
                 {
-                    AddNoMatchFiles(RootPath, Util.PathGetRelative(RootPath, SourceFiles), SourceFiles, ResolvedSourceFilesBuildExclude, sourceFilesBuildFiltersRegex);
+                    AddNoMatchFiles(RootPath, Util.PathGetRelative(RootPath, SourceFiles), SourceFiles, ref ResolvedSourceFilesBuildExclude, sourceFilesBuildFiltersRegex);
                 }
 
-                AddMatchExtensionFiles(files, PRIFiles, PRIFilesExtensions);
+                AddMatchExtensionFiles(files, ref PRIFiles, PRIFilesExtensions);
                 Util.ResolvePath(SourceRootPath, ref PRIFiles);
 
-                AddMatchExtensionFiles(files, ResourceFiles, ResourceFilesExtensions);
+                AddMatchExtensionFiles(files, ref ResourceFiles, ResourceFilesExtensions);
                 Util.ResolvePath(SourceRootPath, ref ResourceFiles);
 
-                AddMatchExtensionFiles(files, NatvisFiles, NatvisFilesExtensions);
+                AddMatchExtensionFiles(files, ref NatvisFiles, NatvisFilesExtensions);
                 Util.ResolvePath(SourceRootPath, ref NatvisFiles);
 
-                AddMatchExtensionFiles(files, NoneFiles, NoneExtensions);
+                AddMatchExtensionFiles(files, ref NoneFiles, NoneExtensions);
                 Util.ResolvePath(SourceRootPath, ref NoneFiles);
 
-                AddMatchExtensionFiles(files, NoneFilesCopyIfNewer, NoneExtensionsCopyIfNewer);
+                AddMatchExtensionFiles(files, ref NoneFilesCopyIfNewer, NoneExtensionsCopyIfNewer);
                 Util.ResolvePath(SourceRootPath, ref NoneFilesCopyIfNewer);
 
-                AddMatchExtensionFiles(files, ProtoFiles, ProtoExtensions);
+                AddMatchExtensionFiles(files, ref ProtoFiles, ProtoExtensions);
                 Util.ResolvePath(SourceRootPath, ref ProtoFiles);
             }
 
@@ -1003,15 +982,15 @@ namespace Sharpmake
             ExcludeOutputFiles();
 
             // Remove file that match SourceFilesExcludeRegex
-            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, SourceFiles), SourceFiles, SourceFilesExclude, sourceFilesExcludeRegex))
+            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, SourceFiles), SourceFiles, ref SourceFilesExclude, sourceFilesExcludeRegex))
                 Debugger.Break();
-            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, ResourceFiles), ResourceFiles, SourceFilesExclude, sourceFilesExcludeRegex))
+            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, ResourceFiles), ResourceFiles, ref SourceFilesExclude, sourceFilesExcludeRegex))
                 Debugger.Break();
-            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, NatvisFiles), NatvisFiles, SourceFilesExclude, sourceFilesExcludeRegex))
+            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, NatvisFiles), NatvisFiles, ref SourceFilesExclude, sourceFilesExcludeRegex))
                 Debugger.Break();
-            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, NoneFiles), NoneFiles, SourceFilesExclude, sourceFilesExcludeRegex))
+            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, NoneFiles), NoneFiles, ref SourceFilesExclude, sourceFilesExcludeRegex))
                 Debugger.Break();
-            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, ProtoFiles), ProtoFiles, SourceFilesExclude, sourceFilesExcludeRegex))
+            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, ProtoFiles), ProtoFiles, ref SourceFilesExclude, sourceFilesExcludeRegex))
                 Debugger.Break();
 
             // Remove exclude file
@@ -1042,16 +1021,16 @@ namespace Sharpmake
             using (builder.CreateProfilingScope("Project.ResolveSourceFiles:ApplyProjectRegexes"))
             {
                 // Do first part that is specific to project to not repeat for each config
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, resolvedSourceFilesBuildExclude, sourceFilesBuildExcludeRegex);
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, resolvedSourceFilesWithCompileAsCOption, sourceFilesCompileAsCRegex);
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, resolvedSourceFilesWithCompileAsCPPOption, sourceFilesCompileAsCPPRegex);
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, resolvedSourceFilesWithCompileAsObjCOption, sourceFilesCompileAsObjCRegex);
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, resolvedSourceFilesWithCompileAsObjCPPOption, sourceFilesCompileAsObjCPPRegex);
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, resolvedSourceFilesWithCompileAsCLROption, sourceFilesCompileAsCLRRegex);
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, compileAsClrFilesExclude, sourceFilesCompileAsCLRExcludeRegex);
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, resolvedSourceFilesWithCompileAsNonCLROption, sourceFilesCompileAsNonCLRRegex);
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, resolvedSourceFilesWithCompileAsWinRTOption, sourceFilesCompileAsWinRTRegex);
-                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, resolvedSourceFilesWithExcludeAsWinRTOption, sourceFilesExcludeAsWinRTRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref resolvedSourceFilesBuildExclude, sourceFilesBuildExcludeRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref resolvedSourceFilesWithCompileAsCOption, sourceFilesCompileAsCRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref resolvedSourceFilesWithCompileAsCPPOption, sourceFilesCompileAsCPPRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref resolvedSourceFilesWithCompileAsObjCOption, sourceFilesCompileAsObjCRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref resolvedSourceFilesWithCompileAsObjCPPOption, sourceFilesCompileAsObjCPPRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref resolvedSourceFilesWithCompileAsCLROption, sourceFilesCompileAsCLRRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref compileAsClrFilesExclude, sourceFilesCompileAsCLRExcludeRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref resolvedSourceFilesWithCompileAsNonCLROption, sourceFilesCompileAsNonCLRRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref resolvedSourceFilesWithCompileAsWinRTOption, sourceFilesCompileAsWinRTRegex);
+                AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref resolvedSourceFilesWithExcludeAsWinRTOption, sourceFilesExcludeAsWinRTRegex);
             }
 
             // Optimization: with projects with huge number of configurations, regexes are the exact same in multiple confs.
@@ -1112,54 +1091,54 @@ namespace Sharpmake
                 {
                     conf.ResolvedSourceFilesBuildExclude.AddRange(resolvedSourceFilesBuildExclude);
                     var configSourceFilesBuildExcludeRegex = RegexCache.GetCachedRegexes(conf.SourceFilesBuildExcludeRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, conf.ResolvedSourceFilesBuildExclude, configSourceFilesBuildExcludeRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref conf.ResolvedSourceFilesBuildExclude, configSourceFilesBuildExcludeRegex);
 
                     // Resolve files that will be built as C Files 
                     conf.ResolvedSourceFilesWithCompileAsCOption.AddRange(resolvedSourceFilesWithCompileAsCOption);
                     var configSourceFilesCompileAsCRegex = RegexCache.GetCachedRegexes(conf.SourceFilesCompileAsCRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, conf.ResolvedSourceFilesWithCompileAsCOption, configSourceFilesCompileAsCRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref conf.ResolvedSourceFilesWithCompileAsCOption, configSourceFilesCompileAsCRegex);
 
                     // Resolve files that will be built as CPP Files 
                     conf.ResolvedSourceFilesWithCompileAsCPPOption.AddRange(resolvedSourceFilesWithCompileAsCPPOption);
                     var configSourceFilesCompileAsCPPRegex = RegexCache.GetCachedRegexes(conf.SourceFilesCompileAsCPPRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, conf.ResolvedSourceFilesWithCompileAsCPPOption, configSourceFilesCompileAsCPPRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref conf.ResolvedSourceFilesWithCompileAsCPPOption, configSourceFilesCompileAsCPPRegex);
 
                     // Resolve files that will be built as ObjC Files 
                     conf.ResolvedSourceFilesWithCompileAsObjCOption.AddRange(resolvedSourceFilesWithCompileAsObjCOption);
                     var configSourceFilesCompileAsObjCRegex = RegexCache.GetCachedRegexes(conf.SourceFilesCompileAsObjCRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, conf.ResolvedSourceFilesWithCompileAsObjCOption, configSourceFilesCompileAsObjCRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref conf.ResolvedSourceFilesWithCompileAsObjCOption, configSourceFilesCompileAsObjCRegex);
 
                     // Resolve files that will be built as ObjCPP Files 
                     conf.ResolvedSourceFilesWithCompileAsObjCPPOption.AddRange(resolvedSourceFilesWithCompileAsObjCPPOption);
                     var configSourceFilesCompileAsObjCPPRegex = RegexCache.GetCachedRegexes(conf.SourceFilesCompileAsObjCPPRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, conf.ResolvedSourceFilesWithCompileAsObjCPPOption, configSourceFilesCompileAsObjCPPRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref conf.ResolvedSourceFilesWithCompileAsObjCPPOption, configSourceFilesCompileAsObjCPPRegex);
 
                     // Resolve files that will be built as CLR Files 
                     conf.ResolvedSourceFilesWithCompileAsCLROption.AddRange(resolvedSourceFilesWithCompileAsCLROption);
                     var configSourceFilesCompileAsCLRRegex = RegexCache.GetCachedRegexes(conf.SourceFilesCompileAsCLRRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, conf.ResolvedSourceFilesWithCompileAsCLROption, configSourceFilesCompileAsCLRRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref conf.ResolvedSourceFilesWithCompileAsCLROption, configSourceFilesCompileAsCLRRegex);
 
                     // Remove file that match SourceFilesCompileAsCLRExcludeRegex
                     var configCompileAsClrFilesExclude = new Strings();
                     configCompileAsClrFilesExclude.AddRange(compileAsClrFilesExclude);
                     var configSourceFilesCompileAsCLRExcludeRegex = RegexCache.GetCachedRegexes(conf.SourceFilesCompileAsCLRExcludeRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, configCompileAsClrFilesExclude, configSourceFilesCompileAsCLRExcludeRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref configCompileAsClrFilesExclude, configSourceFilesCompileAsCLRExcludeRegex);
                     conf.ResolvedSourceFilesWithCompileAsCLROption.RemoveRange(configCompileAsClrFilesExclude);
 
                     // Resolve non-CLR files.
                     conf.ResolvedSourceFilesWithCompileAsNonCLROption.AddRange(resolvedSourceFilesWithCompileAsNonCLROption);
                     var configSourceFilesCompileAsNonCLRRegex = RegexCache.GetCachedRegexes(conf.SourceFilesCompileAsNonCLRRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, conf.ResolvedSourceFilesWithCompileAsNonCLROption, configSourceFilesCompileAsNonCLRRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref conf.ResolvedSourceFilesWithCompileAsNonCLROption, configSourceFilesCompileAsNonCLRRegex);
 
                     // Resolve files that will be built as WinRT Files 
                     conf.ResolvedSourceFilesWithCompileAsWinRTOption.AddRange(resolvedSourceFilesWithCompileAsWinRTOption);
                     var configSourceFilesCompileAsWinRTRegex = RegexCache.GetCachedRegexes(conf.SourceFilesCompileAsWinRTRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, conf.ResolvedSourceFilesWithCompileAsWinRTOption, configSourceFilesCompileAsWinRTRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref conf.ResolvedSourceFilesWithCompileAsWinRTOption, configSourceFilesCompileAsWinRTRegex);
 
                     // Resolve files that will not be built as WinRT Files 
                     conf.ResolvedSourceFilesWithExcludeAsWinRTOption.AddRange(resolvedSourceFilesWithExcludeAsWinRTOption);
                     var configSourceFilesExcludeAsWinRTRegex = RegexCache.GetCachedRegexes(conf.SourceFilesExcludeAsWinRTRegex);
-                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, conf.ResolvedSourceFilesWithExcludeAsWinRTOption, configSourceFilesExcludeAsWinRTRegex);
+                    AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref conf.ResolvedSourceFilesWithExcludeAsWinRTOption, configSourceFilesExcludeAsWinRTRegex);
 
                     conf.ResolvedSourceFilesBlobExclude.AddRange(conf.ResolvedSourceFilesWithCompileAsCOption);
                     conf.ResolvedSourceFilesBlobExclude.AddRange(conf.ResolvedSourceFilesWithCompileAsCPPOption);
@@ -1237,10 +1216,7 @@ namespace Sharpmake
                 if (sourceFile.EndsWith(".asm", StringComparison.OrdinalIgnoreCase))
                 {
                     ContainsASM = true;
-                }
-                if (sourceFile.EndsWith(".nasm", StringComparison.OrdinalIgnoreCase))
-                {
-                    ContainsNASM = true;
+                    break;
                 }
             }
 
@@ -1253,7 +1229,7 @@ namespace Sharpmake
                 Strings configurationsNoBlobbedSourceFiles = GetConfigurationsNoBlobSourceFiles(ResolvedSourceFiles);
 
                 // Exclude from blob all files that match any SourceFilesBlobExcludeRegex.
-                if (AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, SourceFilesBlobExclude, sourceFilesBlobExcludeRegex))
+                if (AddMatchFiles(RootPath, resolvedSourceFilesRelative, ResolvedSourceFiles, ref SourceFilesBlobExclude, sourceFilesBlobExcludeRegex))
                     Debugger.Break();
 
                 foreach (var conf in Configurations)
@@ -1632,6 +1608,7 @@ namespace Sharpmake
             foreach (Project.Configuration conf in Configurations)
             {
                 dependencies.UnionWith(conf.UnResolvedPublicDependencies.Keys);
+                dependencies.UnionWith(conf.UnResolvedProtectedDependencies.Keys);
                 dependencies.UnionWith(conf.UnResolvedPrivateDependencies.Keys);
             }
             return dependencies;
@@ -1685,8 +1662,6 @@ namespace Sharpmake
             ConfigurationType = configurationType;
 
             ExtensionBuildTools[".asm"] = "MASM";
-            ExtensionBuildTools[".nasm"] = "NASM";
-
             ClassName = GetType().Name;
             FullClassName = GetType().FullName;
             Targets.Initialize(targetType);
@@ -2001,7 +1976,8 @@ namespace Sharpmake
                     if (!file.EndsWith(BlobExtension, StringComparison.OrdinalIgnoreCase))
                         files.Add(file);
 
-                    Util.RegisterCapitalizedPath(file);
+                    string fileNameLC = file.ToLower();
+                    s_capitalizedMapFiles.TryAdd(fileNameLC, file);
                 }
                 s_cachedDirectoryFiles[directoryCapitalizedFullName] = files;
             }
@@ -2020,9 +1996,19 @@ namespace Sharpmake
         private bool _resolvedDependencies = false;
         private static ConcurrentDictionary<string, List<string>> s_cachedDirectoryFiles = new ConcurrentDictionary<string, List<string>>();
 
+        // use as cache because Util.GetProperFilePathCapitalization is slow
+        private static ConcurrentDictionary<string, string> s_capitalizedMapFiles = new ConcurrentDictionary<string, string>();
+
         public static string GetCapitalizedFile(string file)
         {
-            return Util.GetCapitalizedPath(file);
+            string filenameLC = file.ToLower();
+            string capitalizedFile;
+            if (!s_capitalizedMapFiles.TryGetValue(filenameLC, out capitalizedFile))
+            {
+                capitalizedFile = Util.GetCapitalizedPath(file);
+                s_capitalizedMapFiles.TryAdd(filenameLC, capitalizedFile);
+            }
+            return capitalizedFile;
         }
 
         #endregion
@@ -2451,8 +2437,8 @@ namespace Sharpmake
             AssemblyName = "[project.Name]";
             IsFileNameToLower = false;
             IsTargetFileNameToLower = false;
-            ResourcesPath = @"[project.RootPath]\Resources\";
-            ContentPath = @"[project.RootPath]\Content\";
+            ResourcesPath = RootPath + @"\Resources\";
+            ContentPath = RootPath + @"\Content\";
             ImportProjects.Add(new ImportProject { Project = DefaultImportProject });
             ApplicationDefinitionFilenames.Add("App.xaml", "MainApplication.xaml");
 
@@ -2551,20 +2537,17 @@ namespace Sharpmake
                 ResolvedContentFullFileNames = new Strings(GetDirectoryFiles(new DirectoryInfo(ContentPath)).Select(GetCapitalizedFile));
             }
 
-            if (SourceFilesExcludeRegex.Count != 0 || ContentExtension.Count != 0 || VsctExtension.Count != 0)
-            {
-                var sourceFilesExcludeRegex = RegexCache.GetCachedRegexes(SourceFilesExcludeRegex);
-                var sourceFiles = new Strings(GetDirectoryFiles(new DirectoryInfo(SourceRootPath)).Select(GetCapitalizedFile));
+            var sourceFilesExcludeRegex = RegexCache.GetCachedRegexes(SourceFilesExcludeRegex);
+            var sourceFiles = new Strings(GetDirectoryFiles(new DirectoryInfo(SourceRootPath)).Select(GetCapitalizedFile));
 
-                sourceFiles = FilterSourceFiles(sourceFiles);
+            sourceFiles = FilterSourceFiles(sourceFiles);
 
-                AddMatchExtensionFiles(sourceFiles, ResolvedContentFullFileNames, ContentExtension);
-                AddMatchExtensionFiles(sourceFiles, VsctCompileFiles, VsctExtension);
-                if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, VsctCompileFiles), VsctCompileFiles, SourceFilesExclude, sourceFilesExcludeRegex))
-                    Debugger.Break();
-            }
+            AddMatchExtensionFiles(sourceFiles, ref ResolvedContentFullFileNames, ContentExtension);
+            AddMatchExtensionFiles(sourceFiles, ref VsctCompileFiles, VsctExtension);
+            if (AddMatchFiles(RootPath, Util.PathGetRelative(RootPath, VsctCompileFiles), VsctCompileFiles, ref SourceFilesExclude, sourceFilesExcludeRegex))
+                Debugger.Break();
 
-            if (ResolvedResourcesFullFileNames.Count == 0 && ResolvedContentFullFileNames.Count == 0)
+            if ((ResolvedResourcesFullFileNames.Count + ResolvedContentFullFileNames.Count) == 0)
                 return;
 
             foreach (string excludeSourceFile in SourceFilesExclude)

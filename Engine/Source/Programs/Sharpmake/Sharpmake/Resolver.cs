@@ -93,17 +93,6 @@ namespace Sharpmake
     /// </summary>
     public class Resolver
     {
-        /// <summary>
-        /// This enumeration can be used to implement conditions or validations based on the resolve state.
-        /// </summary>
-        public enum ResolveStates
-        {
-            NotResolved, // The object is not resolved
-            InProgress, // The object is currently being resolved
-            Resolved // The object has been resolved.
-        };
-
-
         private class TypeWrapper
         {
             public List<MemberInfo> MemberInfos;
@@ -742,12 +731,6 @@ namespace Sharpmake
             if (parameter == null)
             {
                 throw new NotFoundException(parameterName + name + " is null on target type " + refCountedReference.Value.GetType().Name + ", please set a proper value for sharpmake to resolve it");
-            }
-
-            // Handle platform names in case they are provided by a platform extension, this allows "[target.Platform]" to be properly resolved
-            if (parameter is Platform platformParameter)
-            {
-                parameter = Util.GetSimplePlatformString(platformParameter);
             }
 
             return ApplyModifier(modifier, parameter.ToString());

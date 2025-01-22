@@ -28,7 +28,5 @@ namespace Sharpmake
     public interface IGeneratorManager : IProjectGenerator, ISolutionGenerator
     {
         void InitializeBuilder(Builder builder);
-
-        void BeforeGenerate();
     }
 }

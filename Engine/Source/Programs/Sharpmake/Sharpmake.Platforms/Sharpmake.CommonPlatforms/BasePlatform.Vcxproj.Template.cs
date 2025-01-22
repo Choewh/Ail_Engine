@@ -35,7 +35,6 @@ namespace Sharpmake
       <PreprocessToFile>[options.GeneratePreprocessedFile]</PreprocessToFile>
       <PreprocessSuppressLineNumbers>[options.PreprocessSuppressLineNumbers]</PreprocessSuppressLineNumbers>
       <PreprocessKeepComments>[options.KeepComments]</PreprocessKeepComments>
-      <UseStandardPreprocessor>[options.UseStandardConformingPreprocessor]</UseStandardPreprocessor>
       <StringPooling>[options.StringPooling]</StringPooling>
       <MinimalRebuild>[options.MinimalRebuild]</MinimalRebuild>
       <ExceptionHandling>[options.ExceptionHandling]</ExceptionHandling>
@@ -114,6 +113,7 @@ namespace Sharpmake
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
       <AdditionalOptions>[options.AdditionalLinkerOptions]</AdditionalOptions>
       <AdditionalDependencies>[options.AdditionalDependencies]</AdditionalDependencies>
+      <ForceSymbolReferences>[options.ForceSymbolReferences]</ForceSymbolReferences>
       <SuppressStartupBanner>[options.SuppressStartupBanner]</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>[options.IgnoreAllDefaultLibraries]</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>[options.IgnoreDefaultLibraryNames]</IgnoreSpecificDefaultLibraries>
@@ -184,8 +184,10 @@ namespace Sharpmake
     <SpectreMitigation>[options.SpectreMitigation]</SpectreMitigation>
     <EnableASAN>[options.EnableASAN]</EnableASAN>
     <EnableUnitySupport>[options.JumboBuild]</EnableUnitySupport>
+    
   </PropertyGroup>
 ";
+        //<VCToolsVersion>14.41.34120</VCToolsVersion>
 
         private const string _projectConfigurationsGeneral2 =
             @"  <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='[conf.Name]|[platformName]'"">
@@ -250,39 +252,52 @@ namespace Sharpmake
         // Removing unity blobs is useful if the number of blobs changes this will erase the ones that are no longer used.
         // Implementation note:
         // del *.* doesn't work and Visual studio seems to have a protection against this so we must delete explicit files or extensions...
+        //        private const string _projectConfigurationsFastBuildMakefile =
+        //            @"  <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='[conf.Name]|[platformName]'"">
+        //    <OutDir>[options.OutputDirectory]\</OutDir>
+        //    <IntDir>[options.IntermediateDirectory]\</IntDir>
+        //    <NMakeBuildCommandLine>cd [relativeMasterBffPath]
+        //[conf.FastBuildCustomActionsBeforeBuildCommand]
+        //[fastBuildMakeCommandBuild] </NMakeBuildCommandLine>
+        //    <NMakeReBuildCommandLine>cd [relativeMasterBffPath]
+        //[conf.FastBuildCustomActionsBeforeBuildCommand]
+        //[fastBuildMakeCommandRebuild] </NMakeReBuildCommandLine>
+        //    <NMakeCleanCommandLine>del ""[options.IntermediateDirectory]\*unity*.cpp"" &gt;NUL 2&gt;NUL
+        //del ""[options.IntermediateDirectory]\*.obj"" &gt;NUL 2&gt;NUL
+        //del ""[options.IntermediateDirectory]\*.a"" &gt;NUL 2&gt;NUL
+        //del ""[options.IntermediateDirectory]\*.lib"" &gt;NUL 2&gt;NUL
+        //del ""[options.OutputDirectory]\[conf.TargetFileFullName].exe"" &gt;NUL 2&gt;NUL
+        //del ""[options.OutputDirectory]\[conf.TargetFileFullName].elf"" &gt;NUL 2&gt;NUL
+        //del ""[options.OutputDirectory]\[conf.TargetFileFullName].exp"" &gt;NUL 2&gt;NUL
+        //del ""[options.OutputDirectory]\[conf.TargetFileFullName].ilk"" &gt;NUL 2&gt;NUL
+        //del ""[options.OutputDirectory]\[conf.TargetFileFullName].lib"" &gt;NUL 2&gt;NUL
+        //del ""[options.OutputDirectory]\[conf.TargetFileFullName].pdb"" &gt;NUL 2&gt;NUL</NMakeCleanCommandLine>
+        //    <NMakeOutput>[options.OutputFile]</NMakeOutput>
+        //    <NMakePreprocessorDefinitions>[EscapeXML:options.PreprocessorDefinitions]</NMakePreprocessorDefinitions>
+        //    <NMakeIncludeSearchPath>[options.AdditionalIncludeDirectories]</NMakeIncludeSearchPath>
+        //    <NMakeForcedIncludes>[options.ForcedIncludeFiles]</NMakeForcedIncludes>
+        //    <AdditionalOptions>[options.AdditionalOptions]</AdditionalOptions>
+        //  </PropertyGroup>
+        //";
+
+        // msbuild Engine.sln -t:Clean 
         private const string _projectConfigurationsFastBuildMakefile =
             @"  <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='[conf.Name]|[platformName]'"">
     <OutDir>[options.OutputDirectory]\</OutDir>
     <IntDir>[options.IntermediateDirectory]\</IntDir>
     <NMakeBuildCommandLine>cd [relativeMasterBffPath]
 [conf.FastBuildCustomActionsBeforeBuildCommand]
-[fastBuildMakeCommandBuild] </NMakeBuildCommandLine>
+[fastBuildMakeCommandBuild]</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>cd [relativeMasterBffPath]
 [conf.FastBuildCustomActionsBeforeBuildCommand]
-[fastBuildMakeCommandRebuild] </NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>del ""[options.IntermediateDirectory]\*unity*.cpp"" &gt;NUL 2&gt;NUL
-del ""[options.IntermediateDirectory]\*.obj"" &gt;NUL 2&gt;NUL
-del ""[options.IntermediateDirectory]\*.a"" &gt;NUL 2&gt;NUL
-del ""[options.IntermediateDirectory]\*.lib"" &gt;NUL 2&gt;NUL
-del ""[options.OutputDirectory]\[conf.TargetFileFullName].exe"" &gt;NUL 2&gt;NUL
-del ""[options.OutputDirectory]\[conf.TargetFileFullName].elf"" &gt;NUL 2&gt;NUL
-del ""[options.OutputDirectory]\[conf.TargetFileFullName].exp"" &gt;NUL 2&gt;NUL
-del ""[options.OutputDirectory]\[conf.TargetFileFullName].ilk"" &gt;NUL 2&gt;NUL
-del ""[options.OutputDirectory]\[conf.TargetFileFullName].lib"" &gt;NUL 2&gt;NUL
-del ""[options.OutputDirectory]\[conf.TargetFileFullName].pdb"" &gt;NUL 2&gt;NUL</NMakeCleanCommandLine>
+[fastBuildMakeCommandRebuild]</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine></NMakeCleanCommandLine>
     <NMakeOutput>[options.OutputFile]</NMakeOutput>
-    <NMakePreprocessorDefinitions>[EscapeXML:options.PreprocessorDefinitions][EscapeXML:options.IntellisenseAdditionalDefines]</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions>[EscapeXML:options.PreprocessorDefinitions]</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath>[options.AdditionalIncludeDirectories]</NMakeIncludeSearchPath>
     <NMakeForcedIncludes>[options.ForcedIncludeFiles]</NMakeForcedIncludes>
-    <AdditionalOptions>[options.IntellisenseCommandLineOptions]</AdditionalOptions>
+    <AdditionalOptions>[options.AdditionalOptions]</AdditionalOptions>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition=""'$(Configuration)|$(Platform)'=='[conf.Name]|[platformName]'"">
-    <NMakeCompile>
-      <NMakeCompileFileCommandLine>cd [relativeMasterBffPath]
-[conf.FastBuildCustomActionsBeforeBuildCommand]
-[fastBuildMakeCommandCompileFile] </NMakeCompileFileCommandLine>
-    </NMakeCompile>
-  </ItemDefinitionGroup>
 ";
 
         private const string _projectConfigurationsCustomMakefile =
@@ -298,20 +313,6 @@ del ""[options.OutputDirectory]\[conf.TargetFileFullName].pdb"" &gt;NUL 2&gt;NUL
     <NMakeForcedIncludes>[options.ForcedIncludeFiles]</NMakeForcedIncludes>
     <AdditionalOptions>[options.AdditionalOptions]</AdditionalOptions>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition=""'$(Configuration)|$(Platform)'=='[conf.Name]|[platformName]'"">
-    <NMakeCompile>
-      <NMakeCompileFileCommandLine>[conf.CustomBuildSettings.CompileFileCommand]</NMakeCompileFileCommandLine>
-    </NMakeCompile>
-  </ItemDefinitionGroup>
-";
-
-        private const string _projectConfigurationsNasmTemplate =
-    @"    <NASM>
-      <PreprocessorDefinitions>[EscapeXML:options.PreprocessorDefinitions];%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <IncludePaths>[options.AdditionalAssemblyIncludeDirectories]</IncludePaths>
-      <Path>[ExePath]</Path>
-      <PreIncludeFiles>[PreIncludedFiles]</PreIncludeFiles>
-    </NASM>
 ";
     }
 }

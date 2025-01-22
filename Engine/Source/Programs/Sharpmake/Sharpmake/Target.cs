@@ -74,66 +74,20 @@ namespace Sharpmake
         vs2013 = -1,
     }
 
-    /// <summary>
-    /// The platforms supported by Sharpmake generators.
-    /// Always use 'Util.GetSimplePlatformString' to get the correct name of these platforms.
-    /// </summary>
-    /// <remarks>
-    /// This fragment is mandatory in every target.
-    /// </remarks>
+    // Mandatory
     [Fragment, Flags]
     public enum Platform
     {
-        /// <summary>
-        /// Windows 32-bit
-        /// </summary>
         win32 = 1 << 0,
-
-        /// <summary>
-        /// Windows 64-bit
-        /// </summary>
         win64 = 1 << 1,
-
-        /// <summary>
-        /// .NET CLR
-        /// </summary>
         anycpu = 1 << 2,
-
-        /// <summary>
-        /// Xbox One
-        /// </summary>
         durango = 1 << 3,
-
-        /// <summary>
-        /// Playstation 4
-        /// </summary>
         orbis = 1 << 4,
-
-        /// <summary>
-        /// Nintendo Switch
-        /// </summary>
         nx = 1 << 5,
-
-        _inactive1 = 1 << 6, // This used to be "ctr"
-
-        /// <summary>
-        /// Apple iPhone and iPad
-        /// </summary>
+        ctr = 1 << 6,
         ios = 1 << 7,
-
-        /// <summary>
-        /// Android
-        /// </summary>
         android = 1 << 8,
-
-        /// <summary>
-        /// Linux
-        /// </summary>
         linux = 1 << 9,
-
-        /// <summary>
-        /// macOS
-        /// </summary>
         mac = 1 << 10,
 
         /// <summary>
@@ -142,7 +96,7 @@ namespace Sharpmake
         agde = 1 << 11,
 
         /// <summary>
-        /// Apple TV
+        /// AppleTV
         /// </summary>
         tvos = 1 << 12,
 
@@ -152,21 +106,22 @@ namespace Sharpmake
         watchos = 1 << 13,
 
         /// <summary>
-        /// Mac Catalyst (see https://developer.apple.com/mac-catalyst/)
+        /// macOS Catalyst
         /// </summary>
         maccatalyst = 1 << 14,
 
-        // This is a reverse-growing section for undisclosed platforms
-        _reserved10 = 1 << 21, // ACTIVE
-        _reserved9  = 1 << 22, // ACTIVE
-        _reserved8  = 1 << 23, // ACTIVE
-        _reserved7  = 1 << 24, // ACTIVE
-        _reserved6  = 1 << 25, // Inactive
-        _reserved5  = 1 << 26, // Inactive
-        _reserved4  = 1 << 27, // Inactive
-        _reserved3  = 1 << 28, // Inactive
-        _reserved2  = 1 << 29, // Inactive
-        _reserved1  = 1 << 30, // Inactive
+        [IgnoreDuplicateFragmentValue]
+        _reservedPlatformSection = 1 << 21, // This is a reverse-growing section for undisclosed platforms
+        _reserved10 = 1 << 21,
+        _reserved9 = 1 << 22,
+        _reserved8 = 1 << 23,
+        _reserved7 = 1 << 24,
+        _reserved6 = 1 << 25,
+        _reserved5 = 1 << 26,
+        _reserved4 = 1 << 27,
+        _reserved3 = 1 << 28,
+        _reserved2 = 1 << 29,
+        _reserved1 = 1 << 30,
 
         [Obsolete]
         x360 = -1,
@@ -180,8 +135,6 @@ namespace Sharpmake
         wiiu = -1,
         [Obsolete]
         nvshield = -1,
-        [Obsolete]
-        ctr = -1,
     }
 
     [Fragment, Flags]
@@ -243,12 +196,10 @@ namespace Sharpmake
         netstandard2_0 = 1 << 28,
         netstandard2_1 = 1 << 29,
 
-        net9_0 = 1 << 30,
-
         [CompositeFragment]
         all_netframework = v3_5 | v3_5clientprofile | v4_5_2 | v4_6 | v4_6_1 | v4_6_2 | v4_7 | v4_7_1 | v4_7_2 | v4_8,
         [CompositeFragment]
-        all_netcore = netcore1_0 | netcore1_1 | netcore2_0 | netcore2_1 | netcore3_0 | netcore3_1 | net5_0 | net6_0 | net7_0 | net8_0 | net9_0,
+        all_netcore = netcore1_0 | netcore1_1 | netcore2_0 | netcore2_1 | netcore3_0 | netcore3_1 | net5_0 | net6_0 | net7_0 | net8_0,
         [CompositeFragment]
         all_netstandard = netstandard1_0 | netstandard1_1 | netstandard1_2 | netstandard1_3 | netstandard1_4 | netstandard1_5 | netstandard1_6 | netstandard2_0 | netstandard2_1,
 
@@ -306,7 +257,6 @@ namespace Sharpmake
     {
         public Optimization Optimization;
         public Platform Platform;
-        public string ToolchainPlatform { get { return Util.GetToolchainPlatformString(Platform, this); } }
         public BuildSystem BuildSystem;
         public DevEnv DevEnv;
         public OutputType OutputType;
@@ -341,6 +291,34 @@ namespace Sharpmake
         }
     }
 
+    [Fragment, Flags]
+    public enum ELaunchType
+    {
+        Editor = 1 << 0,
+        Client = 1 << 1,
+        Server = 1 << 2
+    }
+
+    public class EngineTarget : Target
+    {
+        public ELaunchType LaunchType;
+
+        public EngineTarget() { }
+        public EngineTarget(
+            ELaunchType launchType,
+            Platform platform,
+            DevEnv devEnv,
+            Optimization optimization,
+            OutputType outputType = OutputType.Lib,
+            Blob blob = Blob.NoBlob,
+            BuildSystem buildSystem = BuildSystem.MSBuild,
+            DotNetFramework framework = DotNetFramework.v3_5) 
+        : base(platform, devEnv, optimization, outputType, blob, buildSystem, framework)
+        {
+            LaunchType = launchType; //ELaunchType.Editor | ELaunchType.Client | ELaunchType.Server;
+        }
+    }
+
     public abstract class ITarget : IComparable<ITarget>
     {
         public override string ToString()
@@ -363,9 +341,11 @@ namespace Sharpmake
                 "_",
                 nonZeroValues.Select(f => s_cachedFieldValueToString.GetOrAdd(f, value =>
                 {
-                    if (value is Platform platformValue)
+                    if (value is Platform)
                     {
-                        return Util.GetSimplePlatformString(platformValue);
+                        var platform = (Platform)value;
+                        if (platform >= Platform._reservedPlatformSection)
+                            return Util.GetPlatformString(platform, null, this).ToLower();
                     }
                     return value.ToString();
                 }))

@@ -66,7 +66,7 @@ namespace Sharpmake
 
         private static readonly ConcurrentDictionary<PlatformImplementation, object> s_implementations = new ConcurrentDictionary<PlatformImplementation, object>(new PlatformImplementationComparer());
         private static readonly ConcurrentDictionary<Type, object> s_defaultImplementations = new ConcurrentDictionary<Type, object>();
-        private static readonly ConcurrentDictionary<Type, object> s_implementationInstances = new ConcurrentDictionary<Type, object>();
+        private static readonly ConcurrentDictionary<object, bool> s_implementationInstances = new ConcurrentDictionary<object, bool>(); // Value is dummy
         private static readonly ConcurrentDictionary<Assembly, bool> s_parsedAssemblies = new ConcurrentDictionary<Assembly, bool>(); // Value is dummy
 
         static PlatformRegistry()
@@ -104,7 +104,7 @@ namespace Sharpmake
             if (extensionAssembly == null)
                 throw new ArgumentNullException(nameof(extensionAssembly));
 
-            if (ExtensionLoader.IsTempAssembly(extensionAssembly))
+            if (extensionAssembly.ReflectionOnly)
                 return;
 
             // Don't support loading dynamically compiled assemblies
@@ -486,7 +486,7 @@ namespace Sharpmake
                 var errorMessageBuilder = new StringBuilder();
                 foreach (var duplicate in duplicates)
                 {
-                    string platform = Util.GetSimplePlatformString(duplicate.Key.Platform);
+                    string platform = duplicate.Key.Platform.ToString();
                     string iface = duplicate.Key.InterfaceType.Name;
                     errorMessageBuilder.AppendLine($"Duplicate platform detected: Platform {platform} as interface {iface}");
                     foreach (var type in duplicate.Value)
@@ -499,7 +499,26 @@ namespace Sharpmake
 
         private static object GetImplementationInstance(Type implType)
         {
-            return s_implementationInstances.GetOrAdd(implType, t => Activator.CreateInstance(t));
+            var result = s_implementationInstances.SingleOrDefault(obj => obj.GetType().AssemblyQualifiedName == implType.AssemblyQualifiedName);
+            object instance = null;
+            if (result.Key == null)
+            {
+                try
+                {
+                    instance = Activator.CreateInstance(implType);
+                    s_implementationInstances.TryAdd(instance, false);
+                }
+                catch (Exception ex)
+                {
+                    throw new PlatformImplementationCreationException(implType, ex);
+                }
+            }
+            else
+            {
+                instance = result.Key;
+            }
+
+            return instance;
         }
 
         private static void RegisterImplementationImpl(Platform platform, Type ifaceType, object implementation)
@@ -511,7 +530,7 @@ namespace Sharpmake
                 object prevImpl = s_implementations[platformImpl];
                 if (object.ReferenceEquals(prevImpl, implementation))
                     return;
-                throw new InvalidOperationException($"There is already an implementation of interface {ifaceType} for platform {Util.GetSimplePlatformString(platform)}. Cannot register {implementation.GetType().AssemblyQualifiedName}");
+                throw new InvalidOperationException($"There is already an implementation of interface {ifaceType} for platform {platform}. Cannot register {implementation.GetType().AssemblyQualifiedName}");
             }
         }
 

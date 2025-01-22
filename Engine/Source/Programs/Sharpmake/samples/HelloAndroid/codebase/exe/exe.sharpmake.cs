@@ -57,7 +57,7 @@ namespace HelloAndroid
 
         public ExePackaging() : base(typeof(CommonTarget))
         {
-            DeployProjectType = DeployType.OnlyIfBuild;
+            DeployProject = true;
 
             Name = "exepackaging";
 

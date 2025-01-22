@@ -8,7 +8,7 @@ public static class Main
     [Sharpmake.Main]
     public static void SharpmakeMain(Sharpmake.Arguments arguments)
     {
-        KitsRootPaths.SetUseKitsRootForDevEnv(DevEnv.vs2022, KitsRootEnum.KitsRoot10, Options.Vc.General.WindowsTargetPlatformVersion.Latest);
+        //KitsRootPaths.SetUseKitsRootForDevEnv(DevEnv.vs2022, KitsRootEnum.KitsRoot10, Options.Vc.General.WindowsTargetPlatformVersion.Latest);
         arguments.Generate<EngineSolution>();
     }
 }

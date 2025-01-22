@@ -117,7 +117,7 @@ namespace Sharpmake
             public string ProjectFile;
 
             // Resolved Project dependencies
-            public HashSet<ResolvedProject> Dependencies = new HashSet<ResolvedProject>();
+            public List<ResolvedProject> Dependencies = new List<ResolvedProject>();
 
             // User data, may be use by generator to attach user data
             public Dictionary<string, object> UserData = new Dictionary<string, object>();
@@ -191,7 +191,8 @@ namespace Sharpmake
                     resolvedProject.Configurations.Add(includedProjectInfo.Configuration);
                     resolvedProject.SolutionConfigurationsBuild.Add(solutionConfiguration, includedProjectInfo.ToBuild);
 
-                    configurationsToProjects.TryAdd(includedProjectInfo.Configuration, resolvedProject);
+                    if (!configurationsToProjects.ContainsKey(includedProjectInfo.Configuration))
+                        configurationsToProjects[includedProjectInfo.Configuration] = resolvedProject;
                 }
             }
 
@@ -218,11 +219,12 @@ namespace Sharpmake
 
                     foreach (Project.Configuration dependencyConfiguration in resolvedProjectConf.ResolvedDependencies)
                     {
-                        ResolvedProject resolvedProjectToAdd;
-
-                        if (configurationsToProjects.TryGetValue(dependencyConfiguration, out resolvedProjectToAdd))
+                        if (configurationsToProjects.ContainsKey(dependencyConfiguration))
                         {
-                            resolvedProject.Dependencies.Add(resolvedProjectToAdd);
+                            var resolvedProjectToAdd = configurationsToProjects[dependencyConfiguration];
+
+                            if (!resolvedProject.Dependencies.Contains(resolvedProjectToAdd))
+                                resolvedProject.Dependencies.Add(resolvedProjectToAdd);
                         }
                     }
                 }
@@ -330,14 +332,8 @@ namespace Sharpmake
                         if (!configurationProject.Configuration.IsFastBuild && configurationProject.Configuration.ResolvedDependencies.Any(d => d.IsFastBuild))
                             unlinkedList.Add(configurationProject.Configuration);
                         unlinkedList.AddRange(dependenciesConfiguration.Where(c => !c.IsFastBuild && c.ResolvedDependencies.Any(d => d.IsFastBuild)));
-
                         foreach (Project.Configuration dependencyConfiguration in dependenciesConfiguration)
                         {
-                            // Skip configuration that only have swapped-to-dll dependencies
-                            var projectsSwappedToDll = configurationProject.Configuration.ConfigurationsSwappedToDll;
-                            if (projectsSwappedToDll is not null && projectsSwappedToDll.Contains(dependencyConfiguration))
-                                continue;
-
                             Project dependencyProject = dependencyConfiguration.Project;
                             if (dependencyProject.SharpmakeProjectType == Project.ProjectTypeAttribute.Export)
                                 continue;
@@ -585,78 +581,78 @@ namespace Sharpmake
                 fastBuildAllProject.InvokeConfiguration(builder.Context);
 
                 // we need to iterate again after invoking the configure of all the projects so we can tweak their conf
-                foreach (var projectsToBuildInSolutionConfig in projectsToBuildPerSolutionConfig)
-                {
-                    var solutionConf = projectsToBuildInSolutionConfig.Item1;
-                    var projectConfigsToBuild = projectsToBuildInSolutionConfig.Item2;
+                //foreach (var projectsToBuildInSolutionConfig in projectsToBuildPerSolutionConfig)
+                //{
+                //    var solutionConf = projectsToBuildInSolutionConfig.Item1;
+                //    var projectConfigsToBuild = projectsToBuildInSolutionConfig.Item2;
 
-                    if (!ForceGenerateFastBuildAll && GenerateFastBuildAllOnlyForConfThatNeedIt && projectConfigsToBuild.Count == 1)
-                        continue;
+                //    if (!ForceGenerateFastBuildAll && GenerateFastBuildAllOnlyForConfThatNeedIt && projectConfigsToBuild.Count == 1)
+                //        continue;
 
-                    var solutionTarget = solutionConf.Target;
-                    var projectConf = fastBuildAllProject.GetConfiguration(solutionTarget);
+                //    var solutionTarget = solutionConf.Target;
+                //    var projectConf = fastBuildAllProject.GetConfiguration(solutionTarget);
 
-                    // Re-link projects to the new All project
-                    // TODO: We should do something to detect and avoid any circular references that this project can now theoretically create.
-                    List<Project.Configuration> projectConfigsToRelink;
-                    if (unlinkedConfigurations.TryGetValue(solutionConf, out projectConfigsToRelink))
-                    {
-                        foreach (Project.Configuration config in projectConfigsToRelink.Distinct())
-                        {
-                            ProjectsDependingOnFastBuildAllForThisSolution.Add(config.Project);
-                        }
-                    }
+                //    // Re-link projects to the new All project
+                //    // TODO: We should do something to detect and avoid any circular references that this project can now theoretically create.
+                //    List<Project.Configuration> projectConfigsToRelink;
+                //    if (unlinkedConfigurations.TryGetValue(solutionConf, out projectConfigsToRelink))
+                //    {
+                //        foreach (Project.Configuration config in projectConfigsToRelink.Distinct())
+                //        {
+                //            ProjectsDependingOnFastBuildAllForThisSolution.Add(config.Project);
+                //        }
+                //    }
 
-                    projectConf.IsFastBuild = true;
+                //    projectConf.IsFastBuild = true;
 
-                    projectConf.AddMasterBff(solutionConf.MasterBffFilePath);
+                //    projectConf.AddMasterBff(solutionConf.MasterBffFilePath);
 
-                    // output the project in the same folder as the solution, and the same name
-                    projectConf.ProjectPath = solutionConf.SolutionPath;
-                    if (string.IsNullOrWhiteSpace(FastBuildAllProjectFileSuffix))
-                        throw new Error("FastBuildAllProjectFileSuffix cannot be left empty in solution " + solutionFile);
-                    projectConf.ProjectFileName = solutionFile.Key + FastBuildAllProjectFileSuffix;
-                    projectConf.SolutionFolder = FastBuildAllSolutionFolder;
+                //    // output the project in the same folder as the solution, and the same name
+                //    projectConf.ProjectPath = solutionConf.SolutionPath;
+                //    if (string.IsNullOrWhiteSpace(FastBuildAllProjectFileSuffix))
+                //        throw new Error("FastBuildAllProjectFileSuffix cannot be left empty in solution " + solutionFile);
+                //    projectConf.ProjectFileName = solutionFile.Key + FastBuildAllProjectFileSuffix;
+                //    projectConf.SolutionFolder = FastBuildAllSolutionFolder;
 
-                    // the project doesn't output anything
-                    projectConf.Output = Project.Configuration.OutputType.None;
+                //    // the project doesn't output anything
+                //    projectConf.Output = Project.Configuration.OutputType.None;
 
-                    // get some settings that are usually global from the first project
-                    // we could expose those, if we need to set them specifically for FastBuildAllProject
-                    var firstProject = projectConfigsToBuild.First();
-                    projectConf.FastBuildCacheAllowed = firstProject.Configuration.FastBuildCacheAllowed;
-                    projectConf.FastBuildCustomArgs = firstProject.Configuration.FastBuildCustomArgs;
-                    projectConf.FastBuildCustomActionsBeforeBuildCommand = firstProject.Configuration.FastBuildCustomActionsBeforeBuildCommand;
-                    projectConf.FastBuildDistribution = firstProject.Configuration.FastBuildDistribution;
-                    projectConf.WriteVcOverrides = firstProject.Configuration.WriteVcOverrides;
-                    projectConf.Options.AddRange(firstProject.Configuration.Options);
+                //    // get some settings that are usually global from the first project
+                //    // we could expose those, if we need to set them specifically for FastBuildAllProject
+                //    var firstProject = projectConfigsToBuild.First();
+                //    projectConf.FastBuildCacheAllowed = firstProject.Configuration.FastBuildCacheAllowed;
+                //    projectConf.FastBuildCustomArgs = firstProject.Configuration.FastBuildCustomArgs;
+                //    projectConf.FastBuildCustomActionsBeforeBuildCommand = firstProject.Configuration.FastBuildCustomActionsBeforeBuildCommand;
+                //    projectConf.FastBuildDistribution = firstProject.Configuration.FastBuildDistribution;
+                //    projectConf.WriteVcOverrides = firstProject.Configuration.WriteVcOverrides;
+                //    projectConf.Options.AddRange(firstProject.Configuration.Options);
 
-                    // add all the projects to build as private dependencies, and OnlyBuildOrder
-                    foreach (Configuration.IncludedProjectInfo projectConfigToBuild in projectConfigsToBuild)
-                    {
-                        // update the ToBuild, as now it is built through the "FastBuildAll" dependency
-                        projectConfigToBuild.ToBuild = Configuration.IncludedProjectInfo.Build.YesThroughDependency;
+                //    // add all the projects to build as private dependencies, and OnlyBuildOrder
+                //    foreach (Configuration.IncludedProjectInfo projectConfigToBuild in projectConfigsToBuild)
+                //    {
+                //        // update the ToBuild, as now it is built through the "FastBuildAll" dependency
+                //        projectConfigToBuild.ToBuild = Configuration.IncludedProjectInfo.Build.YesThroughDependency;
 
-                        // Relink any build-order dependencies
-                        projectConf.GenericBuildDependencies.AddRange(projectConfigToBuild.Configuration.GenericBuildDependencies);
-                        projectConf.GenericBuildDependencies.AddRange(projectConfigToBuild.Configuration.DotNetPublicDependencies.Select(d => d.Configuration).Where(c => !c.IsFastBuild));
-                        projectConf.GenericBuildDependencies.AddRange(projectConfigToBuild.Configuration.DotNetPrivateDependencies.Select(d => d.Configuration).Where(c => !c.IsFastBuild));
+                //        // Relink any build-order dependencies
+                //        projectConf.GenericBuildDependencies.AddRange(projectConfigToBuild.Configuration.GenericBuildDependencies);
+                //        projectConf.GenericBuildDependencies.AddRange(projectConfigToBuild.Configuration.DotNetPublicDependencies.Select(d => d.Configuration).Where(c => !c.IsFastBuild));
+                //        projectConf.GenericBuildDependencies.AddRange(projectConfigToBuild.Configuration.DotNetPrivateDependencies.Select(d => d.Configuration).Where(c => !c.IsFastBuild));
 
-                        projectConf.AddPrivateDependency(projectConfigToBuild.Target, projectConfigToBuild.Project.GetType(), DependencySetting.OnlyBuildOrder);
-                    }
+                //        projectConf.AddPrivateDependency(projectConfigToBuild.Target, projectConfigToBuild.Project.GetType(), DependencySetting.OnlyBuildOrder);
+                //    }
 
-                    // add the newly generated project to the solution config
-                    solutionConf.IncludedProjectInfos.Add(
-                        new Configuration.IncludedProjectInfo
-                        {
-                            Project = fastBuildAllProject,
-                            Configuration = projectConf,
-                            Target = solutionTarget,
-                            Type = fastBuildAllProject.GetType(),
-                            ToBuild = Configuration.IncludedProjectInfo.Build.Yes
-                        }
-                    );
-                }
+                //    // add the newly generated project to the solution config
+                //    solutionConf.IncludedProjectInfos.Add(
+                //        new Configuration.IncludedProjectInfo
+                //        {
+                //            Project = fastBuildAllProject,
+                //            Configuration = projectConf,
+                //            Target = solutionTarget,
+                //            Type = fastBuildAllProject.GetType(),
+                //            ToBuild = Configuration.IncludedProjectInfo.Build.Yes
+                //        }
+                //    );
+                //}
 
                 fastBuildAllProject.Resolve(builder, false);
                 fastBuildAllProject.Link(builder);

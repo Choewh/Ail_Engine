@@ -57,12 +57,6 @@ namespace Sharpmake.Generators
             Bff.InitializeBuilder(builder);
         }
 
-        public void BeforeGenerate()
-        {
-            // Insure we always have a command generator before starting the actual generation
-            FastBuildSettings.MakeCommandGenerator ??= new Bff.FastBuildDefaultCommandGenerator();
-        }
-
         public void Generate(Builder builder,
                              Project project,
                              List<Project.Configuration> configurations,

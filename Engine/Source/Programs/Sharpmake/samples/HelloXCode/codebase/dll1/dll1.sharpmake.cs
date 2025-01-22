@@ -31,14 +31,6 @@ namespace HelloXCode
             conf.IncludePaths.Add(SourceRootPath);
 
             conf.AddPrivateDependency<StaticLib1Project>(target);
-            conf.IncludeSystemPaths.Add("[project.SourceRootPath]/systemincludedll");
-        }
-
-        public override void ConfigureMac(Configuration conf, CommonTarget target)
-        {
-            base.ConfigureMac(conf, target);
-
-            conf.Options.Add(new Options.XCode.Linker.DyLibInstallName(@"@executable_path/libdll1.dylib"));
         }
     }
 }

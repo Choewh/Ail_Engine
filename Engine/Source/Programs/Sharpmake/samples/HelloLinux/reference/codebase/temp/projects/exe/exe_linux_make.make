@@ -14,14 +14,14 @@ ifeq ($(config),debug)
   TARGETDIR  = ../../bin/linux_debug
   TARGET     = $(TARGETDIR)/exe
   DEFINES   += -D "CREATION_DATE=\"October 2020\"" -D "UTIL_DLL_IMPORT" -D "_DEBUG"
-  INCLUDES  += -I../../../dll1 -I../../../header-only-lib -I../../../lib_group -I../../../static\ lib2
+  INCLUDES  += -I../../../dll1 -I../../../header-only-lib -I../../../static\ lib2
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) -g -Wall 
   CXXFLAGS  += $(CFLAGS) -fno-exceptions -fno-rtti 
   LDFLAGS   += -L../../bin/linux_debug -L../../lib/linux_debug/curl -L../../lib/linux_debug/static\ lib2 -Wl,-rpath='$$ORIGIN'
-  LDLIBS    += -l:libcurl.a -l:libdll1.so -l:liblib_group.so -l:libstatic\ lib2.a -l:libuuid.so
+  LDLIBS    += -l:libcurl.a -l:libdll1.so -l:libstatic\ lib2.a -l:libuuid.so
   RESFLAGS  += $(DEFINES) $(INCLUDES)
-  LDDEPS    += ../../bin/linux_debug/libdll1.so ../../bin/linux_debug/liblib_group.so ../../lib/linux_debug/static\ lib2/libstatic\ lib2.a ../../lib/linux_debug/static_lib1/libstatic_lib1.a
+  LDDEPS    += ../../bin/linux_debug/libdll1.so ../../lib/linux_debug/static\ lib2/libstatic\ lib2.a ../../lib/linux_debug/static_lib1/libstatic_lib1.a
   LINKCMD    = $(CXX) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(LDLIBS)
   PCH        = ../../../exe/stdafx.h
   PCHOUT     = $(OBJDIR)/stdafx.h
@@ -47,14 +47,14 @@ ifeq ($(config),release)
   TARGETDIR  = ../../bin/linux_release
   TARGET     = $(TARGETDIR)/exe
   DEFINES   += -D "CREATION_DATE=\"October 2020\"" -D "NDEBUG" -D "UTIL_DLL_IMPORT"
-  INCLUDES  += -I../../../dll1 -I../../../header-only-lib -I../../../lib_group -I../../../static\ lib2
+  INCLUDES  += -I../../../dll1 -I../../../header-only-lib -I../../../static\ lib2
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) -g -O3 -Wall 
   CXXFLAGS  += $(CFLAGS) -fno-exceptions -fno-rtti 
   LDFLAGS   += -L../../bin/linux_release -L../../lib/linux_release/curl -L../../lib/linux_release/static\ lib2 -Wl,-rpath='$$ORIGIN'
-  LDLIBS    += -l:libcurl.a -l:libdll1.so -l:liblib_group.so -l:libstatic\ lib2.a -l:libuuid.so
+  LDLIBS    += -l:libcurl.a -l:libdll1.so -l:libstatic\ lib2.a -l:libuuid.so
   RESFLAGS  += $(DEFINES) $(INCLUDES)
-  LDDEPS    += ../../bin/linux_release/libdll1.so ../../bin/linux_release/liblib_group.so ../../lib/linux_release/static\ lib2/libstatic\ lib2.a ../../lib/linux_release/static_lib1/libstatic_lib1.a
+  LDDEPS    += ../../bin/linux_release/libdll1.so ../../lib/linux_release/static\ lib2/libstatic\ lib2.a ../../lib/linux_release/static_lib1/libstatic_lib1.a
   LINKCMD    = $(CXX) -o $(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(LDLIBS)
   PCH        = ../../../exe/stdafx.h
   PCHOUT     = $(OBJDIR)/stdafx.h

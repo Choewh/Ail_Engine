@@ -52,33 +52,15 @@ namespace Sharpmake
 
             var standardPath = path.Replace(OtherSeparator, Path.DirectorySeparatorChar);
 
-            // C#11 is currently disable until Sharpmake is fully ported to .net8
-            //standardPath = standardPath switch
-            //{
-            //    [WindowsSeparator or UnixSeparator] => standardPath,
-            //    [_, ':'] => IsRunningOnUnix() ? standardPath : standardPath + Path.DirectorySeparatorChar,
-            //    [_, ':', WindowsSeparator or UnixSeparator] => standardPath,
-            //    _ => standardPath.TrimEnd(Path.DirectorySeparatorChar),
-            //};
+            standardPath = standardPath switch
+            {
+                [WindowsSeparator or UnixSeparator] => standardPath,
+                [_, ':'] => IsRunningOnUnix() ? standardPath : standardPath + Path.DirectorySeparatorChar,
+                [_, ':', WindowsSeparator or UnixSeparator] => standardPath,
+                _ => standardPath.TrimEnd(Path.DirectorySeparatorChar),
+            };
 
-            if (standardPath.Length == 1 && (standardPath[0] == WindowsSeparator || standardPath[0] == UnixSeparator))
-            {
-                // Nothing to do to make the path standard
-            }
-            else if (standardPath.Length == 2 && standardPath[1] == ':')
-            {
-                standardPath = IsRunningOnUnix() ? standardPath : standardPath + Path.DirectorySeparatorChar;
-            }
-            else if (standardPath.EndsWith($":{WindowsSeparator}", StringComparison.Ordinal) || standardPath.EndsWith($":{UnixSeparator}", StringComparison.Ordinal))
-            {
-                // Nothing to do to make the path standard
-            }
-            else
-            {
-                standardPath = standardPath.TrimEnd(Path.DirectorySeparatorChar);
-            }
-
-            return forceToLower ? standardPath.ToLower() : standardPath;
+            return standardPath;// forceToLower ? standardPath.ToLower() : standardPath;
         }
 
         public static string EnsureTrailingSeparator(string path)
@@ -599,7 +581,7 @@ namespace Sharpmake
         internal static string ResolvePathAndFixCase(string root, string path)
         {
             string resolvedPath = ResolvePath(root, path);
-            return GetCapitalizedPath(resolvedPath);
+            return GetProperFilePathCapitalization(resolvedPath);
         }
 
 
@@ -640,26 +622,13 @@ namespace Sharpmake
             string properFileName = fileInfo.Name;
             if (dirInfo != null && dirInfo.Exists)
             {
-                // This search could fail on case sensitive filesystem. We will revert to a slower method if not found
-                bool foundFilename = false;
-                foreach (var fsInfo in dirInfo.EnumerateFiles(fileInfo.Name))
+                foreach (var fsInfo in dirInfo.EnumerateFileSystemInfos())
                 {
-                    properFileName = fsInfo.Name;
-                    foundFilename = true;
-                    break;
-                }
-
-                if (!foundFilename) 
-                {
-                    // Slow search - Normally shouldn't happen
-                    foreach (var fsInfo in dirInfo.EnumerateFileSystemInfos())
+                    if (((fsInfo.Attributes & FileAttributes.Directory) != FileAttributes.Directory)
+                        && string.Compare(fsInfo.Name, fileInfo.Name, StringComparison.OrdinalIgnoreCase) == 0)
                     {
-                        if (((fsInfo.Attributes & FileAttributes.Directory) != FileAttributes.Directory)
-                            && string.Compare(fsInfo.Name, fileInfo.Name, StringComparison.OrdinalIgnoreCase) == 0)
-                        {
-                            properFileName = fsInfo.Name;
-                            break;
-                        }
+                        properFileName = fsInfo.Name;
+                        break;
                     }
                 }
             }
@@ -764,12 +733,6 @@ namespace Sharpmake
             return capitalizedPath;
         }
 
-        internal static void RegisterCapitalizedPath(string physicalPath)
-        {
-            string pathLC = physicalPath.ToLower();
-            s_capitalizedPaths.TryAdd(pathLC, physicalPath);
-        }
-
         /// <summary>
         /// Returns path with drive letter in lower case.
         /// 
@@ -837,21 +800,7 @@ namespace Sharpmake
                 var chunkStartIndex = 0;
 
                 // Handle fully qualified paths
-                // C#11 is currently disable until Sharpmake is fully ported to .net8
-                //var fullyQualifiedPath = paths.FirstOrDefault(p => p is ([UnixSeparator or WindowsSeparator, ..]) or ([_, ':', UnixSeparator or WindowsSeparator, ..]));
-                string fullyQualifiedPath = null;
-                foreach (var path in paths)
-                {
-                    if (path[0] == UnixSeparator || path[0] == WindowsSeparator
-                        || (path.Length >= 3 && path[1] == ':' && (path[2] == UnixSeparator || path[2] == WindowsSeparator)))
-                    {
-                        fullyQualifiedPath = path;
-                        break;
-                    }
-                }
-
-                // If no fully qualified path is found, it remains null
-
+                var fullyQualifiedPath = paths.FirstOrDefault(p => p is ([UnixSeparator or WindowsSeparator, ..]) or ([_, ':', UnixSeparator or WindowsSeparator, ..]));
                 if (fullyQualifiedPath is not null)
                 {
                     if (fullyQualifiedPath[0] == Path.DirectorySeparatorChar)

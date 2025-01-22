@@ -4,7 +4,7 @@
 COLOR
 
 :: First compile sharpmake to insure we are trying to deploy using an executable corresponding to the code.
-dotnet build Sharpmake.sln /p:Configuration=Release /p:Platform="Any CPU"
+dotnet build Sharpmake.sln -c Release
 if %errorlevel% NEQ 0 goto error
 
 set SHARPMAKE_EXECUTABLE=%~dp0Sharpmake.Application\bin\Release\net6.0\Sharpmake.Application.exe
@@ -32,7 +32,7 @@ call :UpdateRef samples HelloAssembly               HelloAssembly.sharpmake.cs  
 if not "%ERRORLEVEL_BACKUP%" == "0" goto error
 call :UpdateRef samples CSharpVsix                  CSharpVsix.sharpmake.cs                    reference         CSharpVsix
 if not "%ERRORLEVEL_BACKUP%" == "0" goto error
-call :UpdateRef samples CSharpWCF                   CSharpWCF.sharpmake.cs                     reference         CSharpWCF
+call :UpdateRef samples CSharpWCF                   CSharpWCF.sharpmake.cs                     reference         CSharpWCF\codebase
 if not "%ERRORLEVEL_BACKUP%" == "0" goto error
 call :UpdateRef samples CSharpImports               CSharpImports.sharpmake.cs                 reference         CSharpImports
 if not "%ERRORLEVEL_BACKUP%" == "0" goto error

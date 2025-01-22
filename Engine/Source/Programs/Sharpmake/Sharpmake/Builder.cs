@@ -964,9 +964,10 @@ namespace Sharpmake
             private string GetFragmentInfoString(int fragmentValue)
             {
                 var typedFragment = Enum.ToObject(FieldInfo.FieldType, fragmentValue);
-                if (typedFragment is Platform platformFragment)
+                if (typedFragment is Platform)
                 {
-                    return Util.GetSimplePlatformString(platformFragment);
+                    Platform platformFragment = (Platform)typedFragment;
+                    return platformFragment >= Platform._reservedPlatformSection ? Util.GetSimplePlatformString(platformFragment) : platformFragment.ToString();
                 }
                 return typedFragment.ToString();
             }
@@ -1153,8 +1154,6 @@ namespace Sharpmake
             using (new Util.StopwatchProfiler(ms => { LogWriteLine("    generation done in {0:0.0} sec", ms / 1000.0f); }))
             using (CreateProfilingScope("Generation"))
             {
-                _getGeneratorsManagerCallBack().BeforeGenerate();
-
                 var projects = new List<Project>(_projects.Values);
                 var solutions = new List<Solution>(_solutions.Values);
 

@@ -267,6 +267,7 @@ namespace Sharpmake.Generators.Apple
 				CODE_SIGN_IDENTITY = ""[item.Options.CodeSigningIdentity]"";
 				""CODE_SIGN_IDENTITY[sdk=iphoneos*]"" = ""[item.Options.CodeSigningIdentity]"";
 				CONFIGURATION_BUILD_DIR = ""[item.Options.BuildDirectory]"";
+				CONFIGURATION_TEMP_DIR = ""[item.Configuration.IntermediatePath]"";
 				COPY_PHASE_STRIP = [item.Options.StripDebugSymbolsDuringCopy];
 				DEAD_CODE_STRIPPING = [item.Options.DeadStripping];
 				DEBUG_INFORMATION_FORMAT = [item.Options.DebugInformationFormat];
@@ -297,6 +298,7 @@ namespace Sharpmake.Generators.Apple
 				""LIBRARY_SEARCH_PATHS[sdk=iphoneos*]"" = [item.Options.SpecificDeviceLibraryPaths];
 				""LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]"" = [item.Options.SpecificSimulatorLibraryPaths];
 				MACH_O_TYPE = ""[item.Options.MachOType]"";
+				OBJROOT = ""[item.Configuration.IntermediatePath]"";
 				PRESERVE_DEAD_CODE_INITS_AND_TERMS = [item.Options.PreserveDeadCodeInitsAndTerms];
 				PRODUCT_BUNDLE_IDENTIFIER = ""[item.Options.ProductBundleIdentifier]"";
 				PRODUCT_NAME = ""[item.Configuration.TargetFileName]"";
@@ -305,9 +307,6 @@ namespace Sharpmake.Generators.Apple
 				PROVISIONING_PROFILE_SPECIFIER = ""[item.Options.ProvisioningProfile]"";
 				SKIP_INSTALL = [item.Options.SkipInstall];
 				STRIP_INSTALLED_PRODUCT = [item.Options.StripLinkedProduct];
-				STRIP_STYLE= [item.Options.StripStyle];
-				STRIPFLAGS = ""[item.Options.AdditionalStripFlags]"";
-				STRIP_SWIFT_SYMBOLS = [item.Options.StripSwiftSymbols];
 				SYMROOT = ""[item.Options.BuildDirectory]"";
 				VALID_ARCHS = ""[item.Options.ValidArchs]"";
 				GENERATE_MASTER_OBJECT_FILE = [item.Options.GenerateMasterObjectFile];
@@ -469,10 +468,8 @@ namespace Sharpmake.Generators.Apple
 				GCC_WARN_UNINITIALIZED_AUTOS = [item.Options.WarningUniniatializedAutos];
 				GCC_WARN_UNUSED_FUNCTION = [item.Options.WarningUnusedFunction];
 				GCC_WARN_UNUSED_VARIABLE = [item.Options.WarningUnusedVariable];
-				LD_DYLIB_INSTALL_NAME = ""[item.Options.DyLibInstallName]"";
 				ONLY_ACTIVE_ARCH = [item.Options.OnlyActiveArch];
 				OTHER_CPLUSPLUSFLAGS = [item.Options.CompilerOptions];
-				OTHER_CFLAGS = [item.Options.CompilerOptions];
 				OTHER_LDFLAGS = [item.Options.LinkerOptions];
 				SDKROOT = ""[item.Options.SDKRoot]"";
 				TARGETED_DEVICE_FAMILY = ""[item.Options.TargetedDeviceFamily]"";
@@ -494,33 +491,19 @@ namespace Sharpmake.Generators.Apple
             };
 
             public static string CommandLineArgumentsBegin =
-@"      <CommandLineArguments>
-";
+@"
+      <CommandLineArguments>";
 
             public static string CommandLineArgument =
-@"         <CommandLineArgument
+@"
+         <CommandLineArgument
             argument = ""[argument]""
             isEnabled = ""YES"">
-         </CommandLineArgument>
-";
+         </CommandLineArgument>";
 
             public static string CommandLineArgumentsEnd =
-@"      </CommandLineArguments>";
-
-            public static string EnvironmentVariablesBegin =
-@"      <EnvironmentVariables>
-";
-
-            public static string EnvironmentVariablesEnd =
-@"      </EnvironmentVariables>";
-
-            public static string EnvironmentVariable =
-@"         <EnvironmentVariable
-            key = ""[name]""
-            value = ""[value]""
-            isEnabled = ""YES"">
-         </EnvironmentVariable>
-";
+@"
+      </CommandLineArguments>";
 
             public static string SchemeTestableReference =
 @"
@@ -535,48 +518,14 @@ namespace Sharpmake.Generators.Apple
             </BuildableReference>
          </TestableReference>";
 
-            /// <summary>
-            /// This section is used to configure the executable to run for native projects.
-            /// </summary>
-            public static string SchemeRunnableNativeProject = 
-@"      <BuildableProductRunnable>
-          <BuildableReference
-              BuildableIdentifier = ""primary""
-              BlueprintIdentifier = ""[item.Uid]""
-              BuildableName = ""[item.OutputFile.BuildableName]""
-              BlueprintName = ""[item.Identifier]""
-              ReferencedContainer = ""container:[projectFile].xcodeproj"">
-          </BuildableReference>
-      </BuildableProductRunnable>
-";
-
-            /// <summary>
-            /// This section is used to configure the executable to run for makefile projects.
-            /// </summary>
-            public static string SchemeRunnableMakeFileProject =
-@"      <PathRunnable
-         runnableDebuggingMode = ""0""
-         FilePath = ""[runnableFilePath]"">
-      </PathRunnable>
-";
-
-            /// <summary>
-            /// First part of schema file
-            /// </summary>
-            /// <remarks>
-            /// Schema files have the following format:
-            /// SchemeFileTemplatePart1
-            /// SchemeRunnableNativeProject OR SchemeRunnableMakeFileProject
-            /// SchemeFileTemplatePart2
-            /// </remarks>
-            public static string SchemeFileTemplatePart1 =
+            public static string SchemeFileTemplate =
 @"<?xml version=""1.0"" encoding=""UTF-8""?>
 <Scheme
    LastUpgradeVersion = ""0460""
    version = ""1.3"">
    <BuildAction
       parallelizeBuildables = ""YES""
-      buildImplicitDependencies = ""[buildImplicitDependencies]"">
+      buildImplicitDependencies = ""YES"">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = ""YES""
@@ -613,14 +562,15 @@ namespace Sharpmake.Generators.Apple
       enableGPUFrameCaptureMode = ""[options.EnableGpuFrameCaptureMode]""
       enableGPUValidationMode = ""[options.MetalAPIValidation]""
       allowLocationSimulation = ""YES"">
-";
-
-            /// <summary>
-            /// Secondpart of schema file
-            /// </summary>
-            public static string SchemeFileTemplatePart2 = 
-@"[commandLineArguments]
-[environmentVariables]
+      <BuildableProductRunnable>
+          <BuildableReference
+              BuildableIdentifier = ""primary""
+              BlueprintIdentifier = ""[item.Uid]""
+              BuildableName = ""[item.OutputFile.BuildableName]""
+              BlueprintName = ""[item.Identifier]""
+              ReferencedContainer = ""container:[projectFile].xcodeproj"">
+          </BuildableReference>
+      </BuildableProductRunnable>[commandLineArguments]
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

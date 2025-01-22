@@ -10,7 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Runtime.Loader;
 using System.Threading;
 using System.Threading.Tasks;
 using Sharpmake.Generators;
@@ -439,7 +438,7 @@ namespace Sharpmake.Application
                 return;
 
             GetAssemblyInfo(extensionAssembly, out var extensionName, out var _, out var extensionVersion, out var extensionLocation);
-            LogWriteLine("    {0} {1} loaded from '{2}' in assembly load context '{3}'", extensionName, extensionVersion, extensionLocation, AssemblyLoadContext.GetLoadContext(extensionAssembly).Name);
+            LogWriteLine("    {0} {1} loaded from '{2}'", extensionName, extensionVersion, extensionLocation);
         }
 
         private static void CreateBuilderAndGenerate(BuildContext.BaseBuildContext buildContext, Argument parameters, bool generateDebugSolution)

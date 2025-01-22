@@ -9,17 +9,11 @@ namespace Sharpmake
     public interface IPlatformDescriptor
     {
         /// <summary>
-        /// A simple, human-readable string that describes the platform.
-        /// This is used to generate file and folder paths, symbol names, and error messages.
+        /// Gets a simple string that describes the platform.
         /// </summary>
         string SimplePlatformString { get; }
 
-        /// <summary>
-        /// Returns the name used by the toolchain to identify the platform under a given build target.
-        /// In Visual Studio, this is the second part of the configuration name; for example, for
-        /// "Debug|x64" you would receive "x64" even though Sharpmake calls this platform "Win64".
-        /// </summary>
-        string GetToolchainPlatformString(ITarget target);
+        string GetPlatformString(ITarget target);
 
         /// <summary>
         /// Gets whether this is a proprietary platform owned by Microsoft Corporation.
