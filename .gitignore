@@ -371,3 +371,5 @@ FodyWeavers.xsd
 Engine/Binaries
 Engine/Intermediate
 Engine.sln
+
+Engine/Source/Programs/Sharpmake/
