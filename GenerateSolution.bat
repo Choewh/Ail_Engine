@@ -17,10 +17,9 @@ echo FrontendTargetCS %FrontendTargetCS%
 REM SharpMakeSolutionDir은 최종 Sln 파일이 만들어질 위치가 됩니다.
 REM SharpMakeSolutionDir은 EngineSolution.build.cs에서 사용 됩니다.
 
-REM set SharpMakeSolutionDir=%cd%
-REM IF NOT "%~4"=="" set SharpMakeSolutionDir="%4"
-REM echo 최종 Sln 파일이 만들어질 위치입니다.
-REM echo SharpMakeSolutionDir은 %SharpMakeSolutionDir%
+ set SharpMakeSolutionDir=%cd%
+ IF NOT "%~4"=="" set SharpMakeSolutionDir="%4"
+ echo SharpMakeSolutionDir은 %SharpMakeSolutionDir%
 
 REM set SE_VCPKG_ROOT=%EngineDir%\Engine\Source\Programs\vcpkg
 REM echo %SE_VCPKG_ROOT%
