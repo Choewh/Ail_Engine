@@ -25,5 +25,5 @@ REM set SE_VCPKG_ROOT=%EngineDir%\Engine\Source\Programs\vcpkg
 REM echo %SE_VCPKG_ROOT%
 
 "%EngineDir%\Engine\Source\Programs\Sharpmake\Sharpmake.Application\bin\Release\net6.0\Sharpmake.Application.exe" /sources(@'%TargetCS%') /verbose
-REM "%EngineDir%\Engine\Source\Programs\Sharpmake\Sharpmake.Application\bin\Release\net6.0\Sharpmake.Application.exe" /sources(@'%FrontendTargetCS%') /verbose
+"%EngineDir%\Engine\Source\Programs\Sharpmake\Sharpmake.Application\bin\Release\net6.0\Sharpmake.Application.exe" /sources(@'%FrontendTargetCS%') /verbose
 pause

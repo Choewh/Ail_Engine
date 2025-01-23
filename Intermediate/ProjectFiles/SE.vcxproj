@@ -1,0 +1,851 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug Client|x64">
+      <Configuration>Debug Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Editor|x64">
+      <Configuration>Debug Editor</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug Server|x64">
+      <Configuration>Debug Server</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Development Client|x64">
+      <Configuration>Development Client</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Development Editor|x64">
+      <Configuration>Development Editor</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Development Server|x64">
+      <Configuration>Development Server</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{16707F99-E306-ABA5-4918-C73EB9C08735}</ProjectGuid>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <RootNamespace>SE</RootNamespace>
+    <ProjectName>SE</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Client|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+    <EnableUnitySupport>true</EnableUnitySupport>
+    
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+    <EnableUnitySupport>true</EnableUnitySupport>
+    
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Server|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+    <EnableUnitySupport>true</EnableUnitySupport>
+    
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Client|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+    <EnableUnitySupport>true</EnableUnitySupport>
+    
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Editor|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+    <EnableUnitySupport>true</EnableUnitySupport>
+    
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Server|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+    <EnableUnitySupport>true</EnableUnitySupport>
+    
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Client|x64'">
+    <OutDir>..\..\Binaries\Debug Client\</OutDir>
+    <IntDir>..\Build\Debug Client\SE\</IntDir>
+    <NMakeBuildCommandLine>cd $(SolutionDir)
+if exist "Intermediate\ProjectFiles\UserConfig.vcxproj" ( msbuild Intermediate\ProjectFiles\UserConfig.vcxproj /t:Rebuild /p:platform=x64 /p:configuration="Debug Client")
+devenv Intermediate\ProjectFiles\Engine.sln /Build "Debug Client"
+</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cd $(SolutionDir)
+devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Debug Client"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine></NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Debug Client\SE1.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>CLIENT=1;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=1;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;UNICODE;WIN64;_DEBUG;_LIB;_UNICODE</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++20</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Client|x64'">
+    <CustomOptimizationProperty>Custom-Debug</CustomOptimizationProperty>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'">
+    <OutDir>..\..\Binaries\Debug Editor\</OutDir>
+    <IntDir>..\Build\Debug Editor\SE\</IntDir>
+    <NMakeBuildCommandLine>cd $(SolutionDir)
+if exist "Intermediate\ProjectFiles\UserConfig.vcxproj" ( msbuild Intermediate\ProjectFiles\UserConfig.vcxproj /t:Rebuild /p:platform=x64 /p:configuration="Debug Editor")
+devenv Intermediate\ProjectFiles\Engine.sln /Build "Debug Editor"
+if exist "Intermediate\ProjectFiles\GameProject.vcxproj" ( devenv Intermediate\ProjectFiles\GameProject.vcxproj /Build "Debug Editor")
+</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cd $(SolutionDir)
+devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Debug Editor"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine></NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Debug Editor\SE1.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=1;WITH_EDITOR=1;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;UNICODE;WIN64;_DEBUG;_UNICODE;_USRDLL</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++20</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'">
+    <CustomOptimizationProperty>Custom-Debug</CustomOptimizationProperty>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Server|x64'">
+    <OutDir>..\..\Binaries\Debug Server\</OutDir>
+    <IntDir>..\Build\Debug Server\SE\</IntDir>
+    <NMakeBuildCommandLine>cd $(SolutionDir)
+if exist "Intermediate\ProjectFiles\UserConfig.vcxproj" ( msbuild Intermediate\ProjectFiles\UserConfig.vcxproj /t:Rebuild /p:platform=x64 /p:configuration="Debug Server")
+devenv Intermediate\ProjectFiles\Engine.sln /Build "Debug Server"
+</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cd $(SolutionDir)
+devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Debug Server"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine></NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Debug Server\SE1.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=1;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;UNICODE;WIN64;_DEBUG;_LIB;_UNICODE</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++20</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Server|x64'">
+    <CustomOptimizationProperty>Custom-Debug</CustomOptimizationProperty>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Client|x64'">
+    <OutDir>..\..\Binaries\Development Client\</OutDir>
+    <IntDir>..\Build\Development Client\SE\</IntDir>
+    <NMakeBuildCommandLine>cd $(SolutionDir)
+if exist "Intermediate\ProjectFiles\UserConfig.vcxproj" ( msbuild Intermediate\ProjectFiles\UserConfig.vcxproj /t:Rebuild /p:platform=x64 /p:configuration="Development Client")
+devenv Intermediate\ProjectFiles\Engine.sln /Build "Development Client"
+</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cd $(SolutionDir)
+devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Development Client"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine></NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Development Client\SE1.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>CLIENT=1;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;NDEBUG;UNICODE;WIN64;_LIB;_UNICODE</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++20</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Client|x64'">
+    <CustomOptimizationProperty>Custom-Release</CustomOptimizationProperty>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Editor|x64'">
+    <OutDir>..\..\Binaries\Development Editor\</OutDir>
+    <IntDir>..\Build\Development Editor\SE\</IntDir>
+    <NMakeBuildCommandLine>cd $(SolutionDir)
+if exist "Intermediate\ProjectFiles\UserConfig.vcxproj" ( msbuild Intermediate\ProjectFiles\UserConfig.vcxproj /t:Rebuild /p:platform=x64 /p:configuration="Development Editor")
+devenv Intermediate\ProjectFiles\Engine.sln /Build "Development Editor"
+if exist "Intermediate\ProjectFiles\GameProject.vcxproj" ( devenv Intermediate\ProjectFiles\GameProject.vcxproj /Build "Development Editor")
+</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cd $(SolutionDir)
+devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Development Editor"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine></NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Development Editor\SE1.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=0;WITH_EDITOR=1;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;NDEBUG;UNICODE;WIN64;_UNICODE;_USRDLL</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++20</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Editor|x64'">
+    <CustomOptimizationProperty>Custom-Release</CustomOptimizationProperty>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Server|x64'">
+    <OutDir>..\..\Binaries\Development Server\</OutDir>
+    <IntDir>..\Build\Development Server\SE\</IntDir>
+    <NMakeBuildCommandLine>cd $(SolutionDir)
+if exist "Intermediate\ProjectFiles\UserConfig.vcxproj" ( msbuild Intermediate\ProjectFiles\UserConfig.vcxproj /t:Rebuild /p:platform=x64 /p:configuration="Development Server")
+devenv Intermediate\ProjectFiles\Engine.sln /Build "Development Server"
+</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cd $(SolutionDir)
+devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Development Server"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine></NMakeCleanCommandLine>
+    <NMakeOutput>..\..\Binaries\Development Server\SE1.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;NDEBUG;UNICODE;WIN64;_LIB;_UNICODE</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++20</AdditionalOptions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Server|x64'">
+    <CustomOptimizationProperty>Custom-Release</CustomOptimizationProperty>
+  </PropertyGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Engine\FrontendEngine.build.cs" />
+    <ClInclude Include="..\..\Engine\FrontendEngineMain.build.cs" />
+    <ClInclude Include="..\..\Engine\Source\CommonProject.build.cs" />
+    <ClInclude Include="..\..\Engine\Source\EngineMain.build.cs" />
+    <ClInclude Include="..\..\Engine\Source\EngineSolution.build.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CompileCommandDatabase\CompileCommandDatabase.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CompileCommandDatabase\libgoodbye\goodbye.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CompileCommandDatabase\libhello\hello.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\codebase\ChildProject\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\codebase\FooBarProject\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\codebase\ParentProject\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\ConfigureOrdering.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\Util.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\CLRTest.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\CLRCPPProj\CLRCPPProj.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\CSharpProjBuildOrderDependency\Class1.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\CSharpProjBuildOrderDependency\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\OtherCSharpProj\Class1.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\OtherCSharpProj\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\TestCSharpConsole\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\TestCSharpConsole\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\theEmptyCPPProject\TestClass.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\projects.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpHelloWorld\codebase\HelloWorld\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpHelloWorld\codebase\HelloWorld\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpHelloWorld\common.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpHelloWorld\HelloWorld.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpImports\codebase\CSharpImports\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpImports\codebase\CSharpImports\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpImports\common.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpImports\CSharpImports.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpVsix\codebase\CSharpVsix\HelloWorldCommand.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpVsix\codebase\CSharpVsix\HelloWorldCommandPackage.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpVsix\codebase\CSharpVsix\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpVsix\CSharpVsix.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpWCF\codebase\CSharpWCFApp\IService1.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpWCF\codebase\CSharpWCFApp\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpWCF\codebase\CSharpWCFApp\Service1.svc.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpWCF\codebase\CSharpWCF\Class1.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpWCF\codebase\CSharpWCF\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpWCF\codebase\CSharpWCF\Service References\ServiceReference\Reference.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CSharpWCF\CSharpWCF.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\CustomBuildStep\CustomBuildStep.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\FastBuildSimpleExecutable\FastBuildSimpleExecutable.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\exe\exe.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\exe\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\HelloAndroidAgde.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static lib2\static_lib2.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static lib2\sub folder\useless_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static lib2\util_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static_lib1\src\pch.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static_lib1\src\util_static_lib1.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static_lib1\static_lib1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\HelloAndroidAgde.CommonProject.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\HelloAndroidAgde.CommonSolution.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\HelloAndroidAgde.CommonTarget.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\HelloAndroidAgde.Main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\exe\exe.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\exe\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\HelloAndroid.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static lib2\static_lib2.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static lib2\sub folder\useless_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static lib2\util_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static_lib1\src\pch.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static_lib1\src\util_static_lib1.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static_lib1\static_lib1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\HelloAndroid.CommonProject.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\HelloAndroid.CommonSolution.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\HelloAndroid.CommonTarget.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\HelloAndroid.Main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\dll1\dll1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\dll1\precomp.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\dll1\util_dll.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\exe\exe.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\exe\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\HelloClangCl.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static lib2\static_lib2.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static lib2\sub folder\useless_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static lib2\util_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static_lib1\src\pch.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static_lib1\src\util_static_lib1.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static_lib1\static_lib1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\HelloClangCl.CommonProject.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\HelloClangCl.CommonSolution.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\HelloClangCl.CommonTarget.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\HelloClangCl.Main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\dll1\dll1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\dll1\precomp.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\dll1\util_dll.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\exe\exe.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\exe\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\HelloEvents.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static lib2\static_lib2.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static lib2\sub folder\useless_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static lib2\util_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static_lib1\src\pch.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static_lib1\src\util_static_lib1.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static_lib1\static_lib1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\HelloEvents.CommonProject.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\HelloEvents.CommonSolution.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\HelloEvents.CommonTarget.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\HelloEvents.Main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\exe\exe.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\exe\ios\main_ios.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\exe\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\HelloIOS.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\static lib2\static_lib2.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\static lib2\sub folder\useless_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\static lib2\util_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\static_lib1\src\pch.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\static_lib1\src\util_static_lib1.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\static_lib1\static_lib1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\HelloIOS.CommonProject.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\HelloIOS.CommonSolution.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\HelloIOS.CommonTarget.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\HelloIOS.Main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\dll1\dll1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\dll1\precomp.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\dll1\util_dll.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\exe\exe.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\exe\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\external_lib\external_lib.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\header-only-lib\header-only-lib.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\header-only-lib\header-only-lib.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\HelloLinux.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static lib2\static_lib2.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static lib2\sub folder\useless_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static lib2\util_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static_lib1\src\pch.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static_lib1\src\util_static_lib1.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static_lib1\static_lib1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\HelloLinux.CommonProject.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\HelloLinux.CommonSolution.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\HelloLinux.CommonTarget.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\HelloLinux.Main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloRust\HelloRust.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloWorld\codebase\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloWorld\HelloWorld.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\dll1\dll1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\dll1\precomp.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\dll1\util_dll.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\exe\exe.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\exe\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\exe_prelinked\exe_prelinked.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\HelloXCode.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static lib2\static_lib2.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static lib2\sub folder\useless_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static lib2\util_static_lib2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_lib+1\src\pch.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_lib+1\src\util_static_lib1.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_lib+1\static_lib1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_prelinked_lib_consumed\src\static_prelinked_lib_consumed.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_prelinked_lib_consumed\static_prelinked_lib_consumed.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_prelinked_lib_consumer\src\static_prelinked_lib_consumer.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_prelinked_lib_consumer\static_prelinked_lib1.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\external\external.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\HelloXCode.CommonProject.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\HelloXCode.CommonSolution.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\HelloXCode.CommonTarget.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\HelloXCode.Main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\JumboBuild\codebase\test1.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\JumboBuild\codebase\test2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\JumboBuild\JumboBuild.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetCoreFrameworkHelloWorld\codebase\HelloWorldMultiframework\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetCoreFrameworkHelloWorld\codebase\HelloWorldMultiframework\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetCoreFrameworkHelloWorld\codebase\HelloWorld\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetCoreFrameworkHelloWorld\HelloWorld.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetFrameworkHelloWorld\codebase\HelloWorldMultiFramework\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetFrameworkHelloWorld\codebase\HelloWorld\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetFrameworkHelloWorld\HelloWorld.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetMultiFrameworksHelloWorld\codebase\HelloWorldLib\HelloWorldWriter.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetMultiFrameworksHelloWorld\codebase\HelloWorldMultiframeworks\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetMultiFrameworksHelloWorld\codebase\HelloWorldMultiframeworks\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetMultiFrameworksHelloWorld\HelloWorld.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetOSMultiFrameworksHelloWorld\codebase\HelloWorldLib\HelloWorldWriter.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetOSMultiFrameworksHelloWorld\codebase\HelloWorldMultiframeworks\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetOSMultiFrameworksHelloWorld\codebase\HelloWorldMultiframeworks\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\NetCore\DotNetOSMultiFrameworksHelloWorld\HelloWorld.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\PackageReferences\codebase\CSharpPackageReferences\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\PackageReferences\codebase\CSharpPackageReferences\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\PackageReferences\PackageReferences.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\codebase\floatanglespinbox.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\codebase\floatcosanglespinbox.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\codebase\privatewidget.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\codebase\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\QTFileCustomBuild.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\SimpleExeLibDependency\LibStuff.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\SimpleExeLibDependency\libstuff\hello.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\SimpleExeLibDependency\SimpleExeLibDependency.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\vcpkg\sharpmake\baseclasses.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\vcpkg\sharpmake\externprojects.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\vcpkg\sharpmake\main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\vcpkg\sharpmake\projects.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\BrightnessControl\BrightnessControl.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\BrightnessControl\BrightnessControl.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\CLITool\CLITool.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\CLITool\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\fmt.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\args.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\chrono.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\color.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\compile.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\core.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\format-inl.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\format.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\os.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\ostream.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\printf.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\ranges.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\std.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\include\fmt\xchar.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\includes\MetalCpp\Metal.hpp" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\StoreKit\StoreKit.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\FromPasteboard\FromPasteboard.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\GetBrightness\GetBrightness.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\GotoVSCode\GotoVSCode.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\GotoXCode\GotoXCode.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\GUITool\GUITool.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\GUITool\stdafx.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\HasDebugger\HasDebugger.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\HelloKitConsumer\HelloKitConsumer.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\HelloKitFramework\Foobar\Hoge.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\HelloKitFramework\HelloKit.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\HelloKitFramework\HelloKitFramework.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\intern\includes\Globals.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\MetalNoStoryboard\AppDelegate.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\MetalNoStoryboard\MetalNoStoryboardProject.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\MetalNoStoryboard\Renderer.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\MetalNoStoryboard\ViewController.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\MetalWithStoryboard\AppDelegate.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\MetalWithStoryboard\GameViewController.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\MetalWithStoryboard\MetalWithStoryboard.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\MetalWithStoryboard\Renderer.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\MetalWithStoryboard\ShaderTypes.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\OpenAppStore\OpenAppStore.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\OpenSettings\OpenSettings.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\ReadAppData\ReadAppData.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\SampleBundle\SampleBundle.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\SetBrightness\SetBrightness.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\ShellExec\ShellExec.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\ShowInFinder\ShowInFinder.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\SysInfo\SysInfo.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\ToPasteboard\ToPasteboard.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\XCodeProjects.CommonProject.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\XCodeProjects.CommonSolution.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\XCodeProjects.CommonTargets.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\XCodeProjects.Main.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\XCodeProjects.Solution.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Application\CommandLineArguments.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Application\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Application\obj\Debug\net6.0\Sharpmake.Application.AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Application\obj\Release\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Application\obj\Release\net6.0\Sharpmake.Application.AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Application\Program.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Application\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\AllCppWithDotCExe\hello_c.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\MixCppAndCExe\hello_c.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\additional_dir\extra_class1.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\additional_dir\extra_class2.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\dir_individual_files\floating_class.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\main_dir\util.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\UsePrecompExe\noprecomp_util.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\UsePrecompExe\precomp.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\UsePrecompExe\util.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\UsePrecompExe\util_noprecomp_excludedbyextension.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\UsePrecompExe\util_withprecomp_weirdextension.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\FastBuildFunctionalTest.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\LibA\LibA.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\LibB\LibB.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\LibC\LibC.h" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\NoAllFastBuildProjectFunctionalTest.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\OnlyNeededFastBuildTest\OnlyNeededFastBuildTest.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\SharpmakePackageFunctionalTest\codebase\SimpleProject\SimpleProject.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\SharpmakePackageFunctionalTest\SharpmakePackage.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\SharpmakePackageFunctionalTest\SharpmakePackageFunctionalTest.sharpmake.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Apple\XCode.Util.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Apple\XCodeProj.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Apple\XCodeProj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Apple\XCWorkspace.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Apple\XCWorkspace.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\CompilerSettings.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FastBuild\Bff.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FastBuild\Bff.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FastBuild\Bff.Util.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FastBuild\IBffGenerationContext.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FastBuild\IClangPlatformBff.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FastBuild\IMicrosoftPlatformBff.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FastBuild\IPlatformBff.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FastBuild\MasterBff.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FileGenerator.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\FileGeneratorUtilities.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\GeneratorManager.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Generic\JsonCompilationDatabase.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Generic\MakeApplication.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Generic\MakeApplication.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Generic\Makefile.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Generic\Makefile.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Generic\MakeProject.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Generic\MakeProject.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\IGenerationContext.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\obj\Debug\net6.0\Sharpmake.Generators.AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\obj\Release\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\obj\Release\net6.0\Sharpmake.Generators.AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Androidproj.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Androidproj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Csproj.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Csproj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\IPlatformVcxproj.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\IVcxprojGenerationContext.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\LaunchSettingsJson.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\PackagesConfig.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\PackagesConfig.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\ProjectJson.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\ProjectJson.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\ProjectOptionsGenerator.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Pyproj.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Pyproj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Sln.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Sln.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\UserFile.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Vcxproj.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\Vcxproj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\VsProjCommon.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\VsProjCommon.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\VisualStudio\VsUtil.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Generators\XmlFileGenerator.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Android\AndroidAgdePlatform.Bff.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Android\AndroidAgdePlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Android\AndroidFragments.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Android\AndroidPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Android\AndroidPlatform.Vcxproj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Android\AndroidPlatformAgde.Vcxproj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Android\GlobalSettings.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Android\Util.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Apple\BaseApplePlatform.Bff.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Apple\BaseApplePlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Apple\iOsPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Apple\MacCatalystPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Apple\MacOsPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Apple\tvOsPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Apple\watchOsPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\BaseMicrosoftPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\BaseMicrosoftPlatform.Vcxproj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\BasePlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\BasePlatform.Vcxproj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\DefaultPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\DotNetPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Linux\GlobalSettings.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Linux\LinuxOptions.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Linux\LinuxPlatform.Bff.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Linux\LinuxPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Linux\LinuxPlatform.Vcxproj.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\obj\Debug\net6.0\Sharpmake.CommonPlatforms.AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\obj\Release\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\obj\Release\net6.0\Sharpmake.CommonPlatforms.AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Windows\BaseWindowsPlatform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Windows\ClangForWindowsSettings.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Windows\Win32Platform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Windows\Win64EnvironmentVariableResolver.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.Platforms\Sharpmake.CommonPlatforms\Windows\Win64Platform.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\BffUnityResolverTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\CommandLineTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\ConfigureAttributesTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\CSharpDependencyPropagationTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\CsprojTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\DependencyPropagationTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\DotNetReferenceCollectionTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\JsonSerializerTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\KitsRootPathsTests.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\obj\Debug\net6.0\Sharpmake.UnitTests.AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\OrderableStringsTests.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\PackageReferencesTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\ResolverTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\SharpmakeFileParserTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\StringsTests.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\TargetTests.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\TestFileGenerator.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\TestProjectBuilder.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\TestsSetup.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\TestXcodeProjectGenerator.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\UniqueListTests.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.UnitTests\UtilTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Analyzer\Analyzer.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Assembler.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\AttributeParsers.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Attributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\BuildContext\BaseBuildContext.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\BuildContext\ConfigureDependencyAnalyzer.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\BuildContext\GenerateAll.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\BuildContext\RedirectOutput.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\BuildContext\RegressionTest.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Builder.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\BuilderExtension.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\CommandLine.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Configurable.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\ConfigureCollection.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\DebugBreaks.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\DebugProjectGenerator.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\DependencyTracker.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\DotNetDependency.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\DotNetReferenceCollection.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\EnumExtensions.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Exception.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\ExtensionLoader.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\ExtensionMethods.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\FakeFileTree.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\FastBuildSettings.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\FileListFilter.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\FileSystemStringComparer.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\GeneratedAssemblyConfig.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\GenerationOutput.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\GeneratorManager.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\GlobalSuppressions.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\IAssemblerContext.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\ICommandLineInterface.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\IFastBuildCompilerSettings.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\IFileGenerator.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\IPlatformDescriptor.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\IResolverHelper.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\IWindowsFastBuildCompilerSettings.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\KitsRootPaths.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\MSBuildGlobalSettings.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\obj\Debug\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\obj\Debug\net6.0\Sharpmake.AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\obj\Release\net6.0\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\obj\Release\net6.0\Sharpmake.AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Options.Agde.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Options.Android.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Options.AndroidMakefile.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Options.Clang.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Options.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Options.CSharp.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Options.Makefile.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Options.Vc.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Options.XCode.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\PackageReferences.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\PackageReferences.Template.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\PathUtil.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\PlatformAttributes.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\PlatformEventArgs.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\PlatformExceptions.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\PlatformRegistry.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\PreprocessorConditionParser.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Project.Configuration.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Project.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Properties\AssemblyInfo.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\ReferenceAlias.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\RegexCache.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Resolver.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\RustProject.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\SharpmakeExtension.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Solution.Configuration.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Solution.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\SourceAttributeParser.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Strings.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Target.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\ThreadPool.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Tools.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\TrackedConfiguration.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\TrackedProject.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\UniqueList.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\Util.cs" />
+    <ClInclude Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake\VariableAssignment.cs" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Core.build.cs" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\CoreGlobals.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\CoreMinimal.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\CoreTypes.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\GenericPlatform\GenericPlatform.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\GenericPlatform\GenericPlatformTime.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\HAL\Platform.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Misc\EnumClassFlags.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Modules\ModuleInterface.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Modules\ModuleManager.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\NameTypes.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectGlobals.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectMacros.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Windows\WindowsPlatform.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Launch.build.cs" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Public\Launch.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Public\LaunchEngineLoop.h" />
+    <ClInclude Include="..\..\Engine\Source\SE1\SE1.build.cs" />
+    <ClInclude Include="..\..\Engine\Source\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\CompileCommandDatabase\libgoodbye\goodbye.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\CompileCommandDatabase\libhello\hello.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\CompileCommandDatabase\src\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\codebase\ChildProject\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\codebase\ChildProject\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\codebase\FooBarProject\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\codebase\FooBarProject\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\codebase\ParentProject\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\ConfigureOrder\codebase\ParentProject\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\CLRCPPProj\AssemblyInfo.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\CLRCPPProj\CLRCPPProj.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\CPPCLI\codebase\theEmptyCPPProject\TestClass.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\FastBuildSimpleExecutable\codebase\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\exe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\exe\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static lib2\sub folder\useless_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static lib2\util_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static_lib1\src\ensure_debug.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static_lib1\src\ensure_release.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static_lib1\src\pch.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroidAgde\codebase\static_lib1\src\util_static_lib1.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\exe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\exe\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static lib2\sub folder\useless_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static lib2\util_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static_lib1\src\ensure_debug.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static_lib1\src\ensure_release.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static_lib1\src\pch.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloAndroid\codebase\static_lib1\src\util_static_lib1.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\dll1\dllmain.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\dll1\precomp.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\dll1\util_dll.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\exe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\exe\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static lib2\sub folder\useless_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static lib2\util_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static_lib1\src\ensure_debug.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static_lib1\src\ensure_release.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static_lib1\src\pch.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloClangCl\codebase\static_lib1\src\util_static_lib1.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\dll1\precomp.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\dll1\util_dll.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\exe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\exe\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static lib2\sub folder\useless_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static lib2\util_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static_lib1\src\ensure_debug.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static_lib1\src\ensure_release.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static_lib1\src\pch.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloEvents\codebase\static_lib1\src\util_static_lib1.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\exe\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\static_lib1\src\ensure_debug.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\static_lib1\src\ensure_release.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloIOS\codebase\static_lib1\src\pch.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\dll1\precomp.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\dll1\util_dll.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\exe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\exe\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static lib2\sub folder\useless_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static lib2\util_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static_lib1\src\ensure_debug.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static_lib1\src\ensure_release.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static_lib1\src\pch.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloLinux\codebase\static_lib1\src\util_static_lib1.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloRust\codebase\cpp\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloWorld\codebase\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloWorld\codebase\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\dll1\precomp.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\dll1\util_dll.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\exe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\exe\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\exe_prelinked\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static lib2\sub folder\useless_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static lib2\util_static_lib2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_lib+1\src\ensure_debug.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_lib+1\src\ensure_release.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_lib+1\src\pch.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_lib+1\src\util_static_lib1.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_prelinked_lib_consumed\src\static_prelinked_lib_consumed.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\codebase\static_prelinked_lib_consumer\src\static_prelinked_lib_consumer.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\external\additionsourcetest.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\external\additionsource\additionsourceplaceholder.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\HelloXCode\external\external.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\JumboBuild\codebase\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\JumboBuild\codebase\test1.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\JumboBuild\codebase\test2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\PackageReferences\codebase\CPPPackageReferences\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\codebase\floatanglespinbox.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\codebase\floatcosanglespinbox.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\codebase\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\codebase\privatewidget.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\QTFileCustomBuild\codebase\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\SimpleExeLibDependency\libstuff\hello.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\SimpleExeLibDependency\src\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\vcpkg\src\vcpkgsample\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\CLITool\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\src\fmt.cc" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\src\format.cc" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\extern\fmt\src\os.cc" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\GUITool\stdafx.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\HelloKitConsumer\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\HelloKitFramework\HelloKit.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\samples\XCodeProjects\SampleBundle\samplebundle.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\AllCppWithDotCExe\hello_c.c" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\AllCppWithDotCExe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\ExplicitlyOrderedPostBuildTest\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\MixCppAndCExe\hello_c.c" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\MixCppAndCExe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\PostBuildCopyDirTest\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\PostBuildCopySingleFileTest\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\PostBuildExecuteTest\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\PostBuildStampTest\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\PostBuildTestExecution\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\RequirePreBuildStep\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SimpleExeWithLib\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SimpleLib\simplelib.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\additional_dir\extra_class1.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\additional_dir\extra_class2.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\additional_dir\extra_file.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\dir_individual_files\floating_class.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\dir_individual_files\floating_file.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\dir_individual_files\floating_file_not_used.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\dir_not_used\not_used.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\main_dir\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\SpanMultipleSrcDirs\main_dir\util.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\UsePrecompExe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\UsePrecompExe\noprecomp_util.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\UsePrecompExe\precomp.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\FastBuildFunctionalTest\codebase\UsePrecompExe\util.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\LibA\LibA.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\LibB\LibB.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\LibC\LibC.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\MainProject\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\TestsA\TestsA.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\TestsB\TestsB.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\NoAllFastBuildProjectFunctionalTest\codebase\TestsC\TestsC.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\OnlyNeededFastBuildTest\codebase\SomeExeWithLib\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\OnlyNeededFastBuildTest\codebase\SomeLib\somelib.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Programs\Sharpmake\Sharpmake.FunctionalTests\OnlyNeededFastBuildTest\codebase\SomeStandaloneExe\main.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\Misc\CoreGlobals.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\Modules\ModuleManager.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\NameTypes.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\UObjectGlobals.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Public\CoreTypes.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Launch\Private\Launch.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Launch\Private\LaunchEngineLoop.cpp" />
+    <ClCompile Include="..\..\Engine\Source\SE1\Application.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
