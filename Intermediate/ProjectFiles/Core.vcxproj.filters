@@ -10,11 +10,20 @@
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\NameTypes.cpp">
       <Filter>Private\UObject</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\Object.cpp">
+      <Filter>Private\UObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\UObjectBase.cpp">
+      <Filter>Private\UObject</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\UObjectGlobals.cpp">
       <Filter>Private\UObject</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Public\CoreTypes.cpp">
       <Filter>Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Class.cpp">
+      <Filter>Public\UObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -46,7 +55,16 @@
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Modules\ModuleManager.h">
       <Filter>Public\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Class.h">
+      <Filter>Public\UObject</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\NameTypes.h">
+      <Filter>Public\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Object.h">
+      <Filter>Public\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectBase.h">
       <Filter>Public\UObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectGlobals.h">

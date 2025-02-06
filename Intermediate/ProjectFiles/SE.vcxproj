@@ -105,8 +105,8 @@ devenv Intermediate\ProjectFiles\Engine.sln /Build "Debug Client"
 devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Debug Client"</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine></NMakeCleanCommandLine>
     <NMakeOutput>..\..\Binaries\Debug Client\SE1.exe</NMakeOutput>
-    <NMakePreprocessorDefinitions>CLIENT=1;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=1;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;UNICODE;WIN64;_DEBUG;_LIB;_UNICODE</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>CLIENT=1;CORE_API=DLLEXPORT;ENGINE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=1;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;UNICODE;WIN64;_DEBUG;_LIB;_UNICODE</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Engine;D:\Ail_Engine\Engine\Source\Runtime\Engine\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Engine;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
     <AdditionalOptions>/std:c++20</AdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Client|x64'">
@@ -124,8 +124,8 @@ if exist "Intermediate\ProjectFiles\GameProject.vcxproj" ( devenv Intermediate\P
 devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Debug Editor"</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine></NMakeCleanCommandLine>
     <NMakeOutput>..\..\Binaries\Debug Editor\SE1.exe</NMakeOutput>
-    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=1;WITH_EDITOR=1;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;UNICODE;WIN64;_DEBUG;_UNICODE;_USRDLL</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;ENGINE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=1;WITH_EDITOR=1;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;UNICODE;WIN64;_DEBUG;_UNICODE;_USRDLL</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Engine;D:\Ail_Engine\Engine\Source\Runtime\Engine\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Engine;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
     <AdditionalOptions>/std:c++20</AdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'">
@@ -142,8 +142,8 @@ devenv Intermediate\ProjectFiles\Engine.sln /Build "Debug Server"
 devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Debug Server"</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine></NMakeCleanCommandLine>
     <NMakeOutput>..\..\Binaries\Debug Server\SE1.exe</NMakeOutput>
-    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=1;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;UNICODE;WIN64;_DEBUG;_LIB;_UNICODE</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;ENGINE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=1;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;UNICODE;WIN64;_DEBUG;_LIB;_UNICODE</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Engine;D:\Ail_Engine\Engine\Source\Runtime\Engine\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Engine;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
     <AdditionalOptions>/std:c++20</AdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Server|x64'">
@@ -160,8 +160,8 @@ devenv Intermediate\ProjectFiles\Engine.sln /Build "Development Client"
 devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Development Client"</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine></NMakeCleanCommandLine>
     <NMakeOutput>..\..\Binaries\Development Client\SE1.exe</NMakeOutput>
-    <NMakePreprocessorDefinitions>CLIENT=1;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;NDEBUG;UNICODE;WIN64;_LIB;_UNICODE</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>CLIENT=1;CORE_API=DLLEXPORT;ENGINE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;NDEBUG;UNICODE;WIN64;_LIB;_UNICODE</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Engine;D:\Ail_Engine\Engine\Source\Runtime\Engine\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Engine;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
     <AdditionalOptions>/std:c++20</AdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Client|x64'">
@@ -179,8 +179,8 @@ if exist "Intermediate\ProjectFiles\GameProject.vcxproj" ( devenv Intermediate\P
 devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Development Editor"</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine></NMakeCleanCommandLine>
     <NMakeOutput>..\..\Binaries\Development Editor\SE1.exe</NMakeOutput>
-    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=0;WITH_EDITOR=1;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;NDEBUG;UNICODE;WIN64;_UNICODE;_USRDLL</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;ENGINE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=0;WITH_EDITOR=1;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;NDEBUG;UNICODE;WIN64;_UNICODE;_USRDLL</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Engine;D:\Ail_Engine\Engine\Source\Runtime\Engine\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Engine;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
     <AdditionalOptions>/std:c++20</AdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Editor|x64'">
@@ -197,8 +197,8 @@ devenv Intermediate\ProjectFiles\Engine.sln /Build "Development Server"
 devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Development Server"</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine></NMakeCleanCommandLine>
     <NMakeOutput>..\..\Binaries\Development Server\SE1.exe</NMakeOutput>
-    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;NDEBUG;UNICODE;WIN64;_LIB;_UNICODE</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>CLIENT=0;CORE_API=DLLEXPORT;ENGINE_API=DLLEXPORT;LAUNCH_API=DLLEXPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;;NDEBUG;UNICODE;WIN64;_LIB;_UNICODE</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>..\..\Engine\Source\Runtime\Launch;D:\Ail_Engine\Engine\Source\Runtime\Launch\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Launch;D:\Ail_Engine\Engine\Source\Runtime\Engine;D:\Ail_Engine\Engine\Source\Runtime\Engine\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Engine;D:\Ail_Engine\Engine\Source\Runtime\Core;D:\Ail_Engine\Engine\Source\Runtime\Core\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\Core;D:\Ail_Engine\Engine\Source\SE1;D:\Ail_Engine\Engine\Source\SE1\Public;D:\Ail_Engine\Intermediate\HeaderParser\HeaderParserGenerated\SE1;D:\Ail_Engine\Intermediate\ProjectFiles;;.;installed\x64-windows\include</NMakeIncludeSearchPath>
     <AdditionalOptions>/std:c++20</AdditionalOptions>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Server|x64'">
@@ -684,10 +684,15 @@ devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Development Server"</NMake
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Misc\EnumClassFlags.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Modules\ModuleInterface.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Modules\ModuleManager.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Class.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\NameTypes.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Object.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectBase.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectGlobals.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectMacros.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Windows\WindowsPlatform.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Engine\Engine.build.cs" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Engine\Public\Engine\Engine.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Launch.build.cs" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Public\Launch.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Public\LaunchEngineLoop.h" />
@@ -837,8 +842,12 @@ devenv Intermediate\ProjectFiles\Engine.sln /Rebuild "Development Server"</NMake
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\Misc\CoreGlobals.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\Modules\ModuleManager.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\NameTypes.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\Object.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\UObjectBase.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\UObjectGlobals.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Public\CoreTypes.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Class.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Engine\Private\Engine\Engine.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Launch\Private\Launch.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Launch\Private\LaunchEngineLoop.cpp" />
     <ClCompile Include="..\..\Engine\Source\SE1\Application.cpp" />

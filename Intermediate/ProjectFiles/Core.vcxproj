@@ -622,7 +622,10 @@
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Misc\EnumClassFlags.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Modules\ModuleInterface.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Modules\ModuleManager.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Class.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\NameTypes.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Object.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectBase.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectGlobals.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectMacros.h" />
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Windows\WindowsPlatform.h" />
@@ -631,8 +634,11 @@
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\Misc\CoreGlobals.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\Modules\ModuleManager.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\NameTypes.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\Object.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\UObjectBase.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\UObjectGlobals.cpp" />
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Public\CoreTypes.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Class.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

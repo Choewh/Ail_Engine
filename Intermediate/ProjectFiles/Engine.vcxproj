@@ -27,10 +27,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9B0A45E8-4684-2AF2-F98A-8A792B0478E7}</ProjectGuid>
+    <ProjectGuid>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</ProjectGuid>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <RootNamespace>Launch</RootNamespace>
-    <ProjectName>Launch</ProjectName>
+    <RootNamespace>Engine</RootNamespace>
+    <ProjectName>Engine</ProjectName>
   </PropertyGroup>
   <PropertyGroup Label="Globals">
     <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
@@ -98,78 +98,78 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Client|x64'">
-    <TargetName>Launch</TargetName>
+    <TargetName>Engine</TargetName>
     <OutDir>..\..\Binaries\Debug Client\</OutDir>
-    <IntDir>..\Build\Debug Client\Launch\</IntDir>
+    <IntDir>..\Build\Debug Client\Engine\</IntDir>
     <TargetExt>.lib</TargetExt>
     <GenerateManifest>true</GenerateManifest>
     <LinkIncremental>true</LinkIncremental>
-    <OutputFile>..\..\Binaries\Debug Client\Launch.lib</OutputFile>
+    <OutputFile>..\..\Binaries\Debug Client\Engine.lib</OutputFile>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Client|x64'">
     <CustomOptimizationProperty>Custom-Debug</CustomOptimizationProperty>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'">
-    <TargetName>Launch</TargetName>
+    <TargetName>Engine</TargetName>
     <OutDir>..\..\Binaries\Debug Editor\</OutDir>
-    <IntDir>..\Build\Debug Editor\Launch\</IntDir>
+    <IntDir>..\Build\Debug Editor\Engine\</IntDir>
     <TargetExt>.dll</TargetExt>
     <GenerateManifest>true</GenerateManifest>
     <LinkIncremental>true</LinkIncremental>
-    <OutputFile>..\..\Binaries\Debug Editor\Launch.dll</OutputFile>
+    <OutputFile>..\..\Binaries\Debug Editor\Engine.dll</OutputFile>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'">
     <CustomOptimizationProperty>Custom-Debug</CustomOptimizationProperty>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Server|x64'">
-    <TargetName>Launch</TargetName>
+    <TargetName>Engine</TargetName>
     <OutDir>..\..\Binaries\Debug Server\</OutDir>
-    <IntDir>..\Build\Debug Server\Launch\</IntDir>
+    <IntDir>..\Build\Debug Server\Engine\</IntDir>
     <TargetExt>.lib</TargetExt>
     <GenerateManifest>true</GenerateManifest>
     <LinkIncremental>true</LinkIncremental>
-    <OutputFile>..\..\Binaries\Debug Server\Launch.lib</OutputFile>
+    <OutputFile>..\..\Binaries\Debug Server\Engine.lib</OutputFile>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Server|x64'">
     <CustomOptimizationProperty>Custom-Debug</CustomOptimizationProperty>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Client|x64'">
-    <TargetName>Launch</TargetName>
+    <TargetName>Engine</TargetName>
     <OutDir>..\..\Binaries\Development Client\</OutDir>
-    <IntDir>..\Build\Development Client\Launch\</IntDir>
+    <IntDir>..\Build\Development Client\Engine\</IntDir>
     <TargetExt>.lib</TargetExt>
     <GenerateManifest>true</GenerateManifest>
     <LinkIncremental>false</LinkIncremental>
-    <OutputFile>..\..\Binaries\Development Client\Launch.lib</OutputFile>
+    <OutputFile>..\..\Binaries\Development Client\Engine.lib</OutputFile>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Client|x64'">
     <CustomOptimizationProperty>Custom-Release</CustomOptimizationProperty>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Editor|x64'">
-    <TargetName>Launch</TargetName>
+    <TargetName>Engine</TargetName>
     <OutDir>..\..\Binaries\Development Editor\</OutDir>
-    <IntDir>..\Build\Development Editor\Launch\</IntDir>
+    <IntDir>..\Build\Development Editor\Engine\</IntDir>
     <TargetExt>.dll</TargetExt>
     <GenerateManifest>true</GenerateManifest>
     <LinkIncremental>false</LinkIncremental>
-    <OutputFile>..\..\Binaries\Development Editor\Launch.dll</OutputFile>
+    <OutputFile>..\..\Binaries\Development Editor\Engine.dll</OutputFile>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Editor|x64'">
     <CustomOptimizationProperty>Custom-Release</CustomOptimizationProperty>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Server|x64'">
-    <TargetName>Launch</TargetName>
+    <TargetName>Engine</TargetName>
     <OutDir>..\..\Binaries\Development Server\</OutDir>
-    <IntDir>..\Build\Development Server\Launch\</IntDir>
+    <IntDir>..\Build\Development Server\Engine\</IntDir>
     <TargetExt>.lib</TargetExt>
     <GenerateManifest>true</GenerateManifest>
     <LinkIncremental>false</LinkIncremental>
-    <OutputFile>..\..\Binaries\Development Server\Launch.lib</OutputFile>
+    <OutputFile>..\..\Binaries\Development Server\Engine.lib</OutputFile>
     <IgnoreImportLibrary>false</IgnoreImportLibrary>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development Server|x64'">
@@ -180,8 +180,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>CLIENT=1;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=0;_DEBUG;_HAS_STD_BYTE=0;_LIB;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=1;CORE_API=DLLIMPORT;ENGINE_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=0;_DEBUG;_HAS_STD_BYTE=0;_LIB;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -222,7 +222,7 @@
       <CallingConvention>Cdecl</CallingConvention>
       <CompileAs>Default</CompileAs>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
-      <ProgramDatabaseFileName>..\Build\Debug Client\Launch\Launch_compiler.pdb</ProgramDatabaseFileName>
+      <ProgramDatabaseFileName>..\Build\Debug Client\Engine\Engine_compiler.pdb</ProgramDatabaseFileName>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MaxFilesInUnityFile>0</MaxFilesInUnityFile>
       <MinFilesInUnityFile>2</MinFilesInUnityFile>
@@ -237,7 +237,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <SubSystem/>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
-      <OutputFile>..\..\Binaries\Debug Client\Launch.lib</OutputFile>
+      <OutputFile>..\..\Binaries\Debug Client\Engine.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Editor|x64'">
@@ -245,8 +245,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=1;_DEBUG;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_USRDLL;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLEXPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=1;_DEBUG;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_USRDLL;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -287,7 +287,7 @@
       <CallingConvention>Cdecl</CallingConvention>
       <CompileAs>Default</CompileAs>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
-      <ProgramDatabaseFileName>..\Build\Debug Editor\Launch\Launch_compiler.pdb</ProgramDatabaseFileName>
+      <ProgramDatabaseFileName>..\Build\Debug Editor\Engine\Engine_compiler.pdb</ProgramDatabaseFileName>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MaxFilesInUnityFile>0</MaxFilesInUnityFile>
       <MinFilesInUnityFile>2</MinFilesInUnityFile>
@@ -296,10 +296,10 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OutputFile>..\..\Binaries\Debug Editor\Launch.dll</OutputFile>
+      <OutputFile>..\..\Binaries\Debug Editor\Engine.dll</OutputFile>
       <ShowProgress>NotSet</ShowProgress>
       <AdditionalLibraryDirectories>..\..\Binaries\Debug Editor</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>..\..\Binaries\Debug Editor\Launch.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\Binaries\Debug Editor\Engine.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapExports>false</MapExports>
       <SwapRunFromCD>false</SwapRunFromCD>
@@ -319,14 +319,14 @@
       <Profile>false</Profile>
       <CLRImageType>Default</CLRImageType>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <AdditionalDependencies>Core.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ForceSymbolReferences>IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
+      <AdditionalDependencies>Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ForceSymbolReferences>IMPLEMENT_MODULE_Engine</ForceSymbolReferences>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries></IgnoreSpecificDefaultLibraries>
       <LargeAddressAware>true</LargeAddressAware>
-      <MapFileName>..\..\Binaries\Debug Editor\Launch.map</MapFileName>
-      <ImportLibrary>..\..\Binaries\Debug Editor\Launch.lib</ImportLibrary>
+      <MapFileName>..\..\Binaries\Debug Editor\Engine.map</MapFileName>
+      <ImportLibrary>..\..\Binaries\Debug Editor\Engine.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Server|x64'">
@@ -334,8 +334,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLEXPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=0;_DEBUG;_HAS_STD_BYTE=0;_LIB;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLEXPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=0;_DEBUG;_HAS_STD_BYTE=0;_LIB;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -376,7 +376,7 @@
       <CallingConvention>Cdecl</CallingConvention>
       <CompileAs>Default</CompileAs>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
-      <ProgramDatabaseFileName>..\Build\Debug Server\Launch\Launch_compiler.pdb</ProgramDatabaseFileName>
+      <ProgramDatabaseFileName>..\Build\Debug Server\Engine\Engine_compiler.pdb</ProgramDatabaseFileName>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <MaxFilesInUnityFile>0</MaxFilesInUnityFile>
       <MinFilesInUnityFile>2</MinFilesInUnityFile>
@@ -391,7 +391,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <SubSystem/>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
-      <OutputFile>..\..\Binaries\Debug Server\Launch.lib</OutputFile>
+      <OutputFile>..\..\Binaries\Debug Server\Engine.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development Client|x64'">
@@ -399,8 +399,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Full</Optimization>
-      <PreprocessorDefinitions>CLIENT=1;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLEXPORT;NDEBUG;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_LIB;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=1;CORE_API=DLLIMPORT;ENGINE_API=DLLEXPORT;NDEBUG;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_LIB;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -441,7 +441,7 @@
       <CallingConvention>Cdecl</CallingConvention>
       <CompileAs>Default</CompileAs>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
-      <ProgramDatabaseFileName>..\Build\Development Client\Launch\Launch_compiler.pdb</ProgramDatabaseFileName>
+      <ProgramDatabaseFileName>..\Build\Development Client\Engine\Engine_compiler.pdb</ProgramDatabaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MaxFilesInUnityFile>0</MaxFilesInUnityFile>
       <MinFilesInUnityFile>2</MinFilesInUnityFile>
@@ -456,7 +456,7 @@
       <TargetMachine>MachineX64</TargetMachine>
       <SubSystem/>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
-      <OutputFile>..\..\Binaries\Development Client\Launch.lib</OutputFile>
+      <OutputFile>..\..\Binaries\Development Client\Engine.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development Editor|x64'">
@@ -464,8 +464,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Full</Optimization>
-      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLEXPORT;NDEBUG;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=1;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_USRDLL;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLEXPORT;NDEBUG;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=1;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;_USRDLL;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -506,7 +506,7 @@
       <CallingConvention>Cdecl</CallingConvention>
       <CompileAs>Default</CompileAs>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
-      <ProgramDatabaseFileName>..\Build\Development Editor\Launch\Launch_compiler.pdb</ProgramDatabaseFileName>
+      <ProgramDatabaseFileName>..\Build\Development Editor\Engine\Engine_compiler.pdb</ProgramDatabaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MaxFilesInUnityFile>0</MaxFilesInUnityFile>
       <MinFilesInUnityFile>2</MinFilesInUnityFile>
@@ -515,10 +515,10 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <OutputFile>..\..\Binaries\Development Editor\Launch.dll</OutputFile>
+      <OutputFile>..\..\Binaries\Development Editor\Engine.dll</OutputFile>
       <ShowProgress>NotSet</ShowProgress>
       <AdditionalLibraryDirectories>..\..\Binaries\Development Editor</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>..\..\Binaries\Development Editor\Launch.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>..\..\Binaries\Development Editor\Engine.pdb</ProgramDatabaseFile>
       <GenerateMapFile>true</GenerateMapFile>
       <MapExports>false</MapExports>
       <SwapRunFromCD>false</SwapRunFromCD>
@@ -538,14 +538,14 @@
       <Profile>false</Profile>
       <CLRImageType>Default</CLRImageType>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <AdditionalDependencies>Core.lib;Engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ForceSymbolReferences>IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
+      <AdditionalDependencies>Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ForceSymbolReferences>IMPLEMENT_MODULE_Engine</ForceSymbolReferences>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries></IgnoreSpecificDefaultLibraries>
       <LargeAddressAware>true</LargeAddressAware>
-      <MapFileName>..\..\Binaries\Development Editor\Launch.map</MapFileName>
-      <ImportLibrary>..\..\Binaries\Development Editor\Launch.lib</ImportLibrary>
+      <MapFileName>..\..\Binaries\Development Editor\Engine.map</MapFileName>
+      <ImportLibrary>..\..\Binaries\Development Editor\Engine.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Development Server|x64'">
@@ -553,8 +553,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Full</Optimization>
-      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLEXPORT;NDEBUG;SERVER=1;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_LIB;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLEXPORT;NDEBUG;SERVER=1;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=0;_HAS_STD_BYTE=0;_LIB;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -595,7 +595,7 @@
       <CallingConvention>Cdecl</CallingConvention>
       <CompileAs>Default</CompileAs>
       <AdditionalOptions>/Zc:__cplusplus</AdditionalOptions>
-      <ProgramDatabaseFileName>..\Build\Development Server\Launch\Launch_compiler.pdb</ProgramDatabaseFileName>
+      <ProgramDatabaseFileName>..\Build\Development Server\Engine\Engine_compiler.pdb</ProgramDatabaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MaxFilesInUnityFile>0</MaxFilesInUnityFile>
       <MinFilesInUnityFile>2</MinFilesInUnityFile>
@@ -610,17 +610,15 @@
       <TargetMachine>MachineX64</TargetMachine>
       <SubSystem/>
       <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
-      <OutputFile>..\..\Binaries\Development Server\Launch.lib</OutputFile>
+      <OutputFile>..\..\Binaries\Development Server\Engine.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Launch.build.cs" />
-    <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Public\Launch.h" />
-    <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Public\LaunchEngineLoop.h" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Engine\Engine.build.cs" />
+    <ClInclude Include="..\..\Engine\Source\Runtime\Engine\Public\Engine\Engine.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Engine\Source\Runtime\Launch\Private\Launch.cpp" />
-    <ClCompile Include="..\..\Engine\Source\Runtime\Launch\Private\LaunchEngineLoop.cpp" />
+    <ClCompile Include="..\..\Engine\Source\Runtime\Engine\Private\Engine\Engine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
@@ -631,18 +629,8 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
-    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Debug Client'">
-      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
     <ProjectReference Include="Core.vcxproj" Condition="'$(Configuration)' == 'Debug Editor'">
       <Project>{729E71FB-34D3-0F43-C42F-E776E4F23247}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
-    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Debug Editor'">
-      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
@@ -651,18 +639,8 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
-    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Debug Server'">
-      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
     <ProjectReference Include="Core.vcxproj" Condition="'$(Configuration)' == 'Development Client'">
       <Project>{729E71FB-34D3-0F43-C42F-E776E4F23247}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
-    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Development Client'">
-      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
@@ -671,18 +649,8 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
-    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Development Editor'">
-      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
     <ProjectReference Include="Core.vcxproj" Condition="'$(Configuration)' == 'Development Server'">
       <Project>{729E71FB-34D3-0F43-C42F-E776E4F23247}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
-    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Development Server'">
-      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>

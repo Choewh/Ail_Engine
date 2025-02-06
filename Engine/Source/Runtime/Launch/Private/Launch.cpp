@@ -7,21 +7,21 @@ FEngineLoop GEngineLoop;
 
 int32 LAUNCH_API EnginePreInit(const TCHAR* CmdLine)
 {
-	int32 ErrorLevel;
+	int32 ErrorLevel = GEngineLoop.PreInit(CmdLine);
 
 	return(ErrorLevel);
 }
 
 int32 LAUNCH_API EngineInit()
 {
-	int32 ErrorLevel;
+	int32 ErrorLevel = GEngineLoop.Init();
 
 	return(ErrorLevel);
 }
 
 LAUNCH_API void EngineTick(void)
 {
-	//GEngineLoop.Tick();
+	GEngineLoop.Tick();
 }
 
 int32 LAUNCH_API GuardedMain(const TCHAR* CmdLine)

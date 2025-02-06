@@ -3,14 +3,14 @@
 //#include "UObject/UObject.h"
 //#include "Logging/Logger.h"
 //
-//bool GIsRequestingExit = false; /* Indicates that MainLoop() should be exited at the end of the current iteration */
+bool GIsRequestingExit = false; /* Indicates that MainLoop() should be exited at the end of the current iteration */
 //
 //CORE_API map<UClass*, vector<engine_weak_ptr<UObject>>> ObjectMap;
 //
-//bool IsEngineExitRequested()
-//{
-//	return GIsRequestingExit;
-//}
+bool CORE_API IsEngineExitRequested()
+{
+	return GIsRequestingExit;
+}
 //
 //void CORE_API RequestEngineExit(const FString ReasonString)
 //{
@@ -18,33 +18,33 @@
 //	GIsRequestingExit = true;
 //}
 //
-//FStaticConstructObjectParameters::FStaticConstructObjectParameters(UClass* InClass)
-//	: Class(InClass)
-//{
-//	if (!Class)
-//	{
-//		E_LOG(Error, TEXT("Class is nullptr"))
-//	}
-//}
-//
-//FObjectInitializer::FObjectInitializer(shared_ptr<UObject>& InObj, const FStaticConstructObjectParameters& StaticConstructParams)
-//	: SharedObj(InObj)
-//	, Class(StaticConstructParams.Class)
-//	, OuterPrivate(StaticConstructParams.Outer)
-//	, ObjectFlags(StaticConstructParams.SetFlags)
-//	, Name(StaticConstructParams.Name)
-//	, ObjectArchetype(StaticConstructParams.Template)
-//{
-//	if (ObjectArchetype)
-//	{
-//		bShouldInitializePropsFromArchetype = true;
-//	}
-//}
-//
-//FObjectInitializer::~FObjectInitializer()
-//{
-//	PostConstructInit();
-//}
+FStaticConstructObjectParameters::FStaticConstructObjectParameters(UClass* InClass)
+	: Class(InClass)
+{
+	if (!Class)
+	{
+		//E_LOG(Error, TEXT("Class is nullptr"))
+	}
+}
+
+FObjectInitializer::FObjectInitializer(shared_ptr<UObject>& InObj, const FStaticConstructObjectParameters& StaticConstructParams)
+	: SharedObj(InObj)
+	, Class(StaticConstructParams.Class)
+	, OuterPrivate(StaticConstructParams.Outer)
+	, ObjectFlags(StaticConstructParams.SetFlags)
+	, Name(StaticConstructParams.Name)
+	, ObjectArchetype(StaticConstructParams.Template)
+{
+	if (ObjectArchetype)
+	{
+		bShouldInitializePropsFromArchetype = true;
+	}
+}
+
+FObjectInitializer::~FObjectInitializer()
+{
+	//PostConstructInit();
+}
 //#include "Math/SimpleMath.h"
 //void FObjectInitializer::InitProperties(UObject* Obj, UClass* DefaultsClass, UObject* DefaultData, bool bCopyTransientsFromClassDefaults)
 //{

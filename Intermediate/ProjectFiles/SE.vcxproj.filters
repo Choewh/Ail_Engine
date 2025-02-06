@@ -427,11 +427,23 @@
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\NameTypes.cpp">
       <Filter>Source\Runtime\Core\Private\UObject</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\Object.cpp">
+      <Filter>Source\Runtime\Core\Private\UObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\UObjectBase.cpp">
+      <Filter>Source\Runtime\Core\Private\UObject</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Private\UObject\UObjectGlobals.cpp">
       <Filter>Source\Runtime\Core\Private\UObject</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Engine\Source\Runtime\Core\Public\CoreTypes.cpp">
       <Filter>Source\Runtime\Core\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Class.cpp">
+      <Filter>Source\Runtime\Core\Public\UObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Engine\Source\Runtime\Engine\Private\Engine\Engine.cpp">
+      <Filter>Source\Runtime\Engine\Private\Engine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Engine\Source\Runtime\Launch\Private\Launch.cpp">
       <Filter>Source\Runtime\Launch\Private</Filter>
@@ -1877,7 +1889,16 @@
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Modules\ModuleManager.h">
       <Filter>Source\Runtime\Core\Public\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Class.h">
+      <Filter>Source\Runtime\Core\Public\UObject</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\NameTypes.h">
+      <Filter>Source\Runtime\Core\Public\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\Object.h">
+      <Filter>Source\Runtime\Core\Public\UObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectBase.h">
       <Filter>Source\Runtime\Core\Public\UObject</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\UObject\UObjectGlobals.h">
@@ -1888,6 +1909,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Engine\Source\Runtime\Core\Public\Windows\WindowsPlatform.h">
       <Filter>Source\Runtime\Core\Public\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Engine\Source\Runtime\Engine\Engine.build.cs">
+      <Filter>Source\Runtime\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Engine\Source\Runtime\Engine\Public\Engine\Engine.h">
+      <Filter>Source\Runtime\Engine\Public\Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Engine\Source\Runtime\Launch\Launch.build.cs">
       <Filter>Source\Runtime\Launch</Filter>
@@ -2733,6 +2760,21 @@
     </Filter>
     <Filter Include="Source\Runtime\Core\Public\Windows">
       <UniqueIdentifier>{e6e0df11-0c26-3260-dfdd-133bdec39c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Engine">
+      <UniqueIdentifier>{1b14a7a2-ba47-a634-e430-81555afe2af8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Engine\Private">
+      <UniqueIdentifier>{2bff7e68-1eab-02eb-f9b0-e95795b2f6f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Engine\Private\Engine">
+      <UniqueIdentifier>{4dc2935d-f231-19b9-024d-433fd7ced9e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Engine\Public">
+      <UniqueIdentifier>{265fc7eb-edde-293e-52d1-a3ff6d2404c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Runtime\Engine\Public\Engine">
+      <UniqueIdentifier>{9c00d6b1-7636-2af2-3a3b-2680f9532dc5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Runtime\Launch">
       <UniqueIdentifier>{f7b30770-6107-d153-ff34-9e958b0836de}</UniqueIdentifier>

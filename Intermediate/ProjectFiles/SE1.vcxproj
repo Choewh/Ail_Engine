@@ -180,8 +180,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>CLIENT=1;CORE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=0;_CONSOLE;_DEBUG;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=1;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=0;_CONSOLE;_DEBUG;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -254,8 +254,8 @@
       <Profile>false</Profile>
       <CLRImageType>Default</CLRImageType>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <AdditionalDependencies>Core.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ForceSymbolReferences>IMPLEMENT_MODULE_Core;IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
+      <AdditionalDependencies>Core.lib;Engine.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ForceSymbolReferences>IMPLEMENT_MODULE_Core;IMPLEMENT_MODULE_Engine;IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries></IgnoreSpecificDefaultLibraries>
@@ -268,8 +268,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=1;_CONSOLE;_DEBUG;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=1;_CONSOLE;_DEBUG;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -342,7 +342,7 @@
       <Profile>false</Profile>
       <CLRImageType>Default</CLRImageType>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <AdditionalDependencies>Core.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Core.lib;Engine.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ForceSymbolReferences>IMPLEMENT_MODULE_SE1</ForceSymbolReferences>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -356,8 +356,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=0;_CONSOLE;_DEBUG;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;SERVER=1;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=1;WITH_EDITOR=0;_CONSOLE;_DEBUG;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -430,8 +430,8 @@
       <Profile>false</Profile>
       <CLRImageType>Default</CLRImageType>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <AdditionalDependencies>Core.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ForceSymbolReferences>IMPLEMENT_MODULE_Core;IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
+      <AdditionalDependencies>Core.lib;Engine.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ForceSymbolReferences>IMPLEMENT_MODULE_Core;IMPLEMENT_MODULE_Engine;IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries></IgnoreSpecificDefaultLibraries>
@@ -444,8 +444,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Full</Optimization>
-      <PreprocessorDefinitions>CLIENT=1;CORE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;NDEBUG;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=0;_CONSOLE;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=1;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;NDEBUG;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=0;_CONSOLE;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -518,8 +518,8 @@
       <Profile>false</Profile>
       <CLRImageType>Default</CLRImageType>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <AdditionalDependencies>Core.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ForceSymbolReferences>IMPLEMENT_MODULE_Core;IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
+      <AdditionalDependencies>Core.lib;Engine.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ForceSymbolReferences>IMPLEMENT_MODULE_Core;IMPLEMENT_MODULE_Engine;IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries></IgnoreSpecificDefaultLibraries>
@@ -532,8 +532,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Full</Optimization>
-      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;NDEBUG;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=1;_CONSOLE;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;NDEBUG;SERVER=0;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=1;_CONSOLE;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -606,7 +606,7 @@
       <Profile>false</Profile>
       <CLRImageType>Default</CLRImageType>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <AdditionalDependencies>Core.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Core.lib;Engine.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ForceSymbolReferences>IMPLEMENT_MODULE_SE1</ForceSymbolReferences>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -620,8 +620,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Full</Optimization>
-      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;NDEBUG;SERVER=1;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=0;_CONSOLE;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CLIENT=0;CORE_API=DLLIMPORT;ENGINE_API=DLLIMPORT;LAUNCH_API=DLLIMPORT;NDEBUG;SERVER=1;SOLUTION_NAME="$(SolutionName)";WIN64;WITH_DEBUG=0;WITH_EDITOR=0;_CONSOLE;_HAS_STD_BYTE=0;_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING;%(PreprocessorDefinitions);$(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\Engine\Source\Runtime\Core;..\..\Engine\Source\Runtime\Core\Public;..\..\Engine\Source\Runtime\Engine;..\..\Engine\Source\Runtime\Engine\Public;..\..\Engine\Source\Runtime\Launch;..\..\Engine\Source\Runtime\Launch\Public;..\..\Engine\Source\SE1;..\..\Engine\Source\SE1\Public;..\HeaderParser\HeaderParserGenerated\Core;..\HeaderParser\HeaderParserGenerated\Engine;..\HeaderParser\HeaderParserGenerated\Launch;..\HeaderParser\HeaderParserGenerated\SE1;.</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWarningAsError>false</TreatWarningAsError>
@@ -694,8 +694,8 @@
       <Profile>false</Profile>
       <CLRImageType>Default</CLRImageType>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
-      <AdditionalDependencies>Core.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ForceSymbolReferences>IMPLEMENT_MODULE_Core;IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
+      <AdditionalDependencies>Core.lib;Engine.lib;Launch.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ForceSymbolReferences>IMPLEMENT_MODULE_Core;IMPLEMENT_MODULE_Engine;IMPLEMENT_MODULE_Launch</ForceSymbolReferences>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries></IgnoreSpecificDefaultLibraries>
@@ -723,6 +723,11 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Debug Client'">
+      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
     <ProjectReference Include="Core.vcxproj" Condition="'$(Configuration)' == 'Debug Editor'">
       <Project>{729E71FB-34D3-0F43-C42F-E776E4F23247}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -730,6 +735,11 @@
     </ProjectReference>
     <ProjectReference Include="Launch.vcxproj" Condition="'$(Configuration)' == 'Debug Editor'">
       <Project>{9B0A45E8-4684-2AF2-F98A-8A792B0478E7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Debug Editor'">
+      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
@@ -743,6 +753,11 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Debug Server'">
+      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
     <ProjectReference Include="Core.vcxproj" Condition="'$(Configuration)' == 'Development Client'">
       <Project>{729E71FB-34D3-0F43-C42F-E776E4F23247}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -750,6 +765,11 @@
     </ProjectReference>
     <ProjectReference Include="Launch.vcxproj" Condition="'$(Configuration)' == 'Development Client'">
       <Project>{9B0A45E8-4684-2AF2-F98A-8A792B0478E7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Development Client'">
+      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
@@ -763,6 +783,11 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Development Editor'">
+      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
     <ProjectReference Include="Core.vcxproj" Condition="'$(Configuration)' == 'Development Server'">
       <Project>{729E71FB-34D3-0F43-C42F-E776E4F23247}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -770,6 +795,11 @@
     </ProjectReference>
     <ProjectReference Include="Launch.vcxproj" Condition="'$(Configuration)' == 'Development Server'">
       <Project>{9B0A45E8-4684-2AF2-F98A-8A792B0478E7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <ProjectReference Include="Engine.vcxproj" Condition="'$(Configuration)' == 'Development Server'">
+      <Project>{F1E3DDFA-A586-453F-15EC-DFC0333C6A46}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
